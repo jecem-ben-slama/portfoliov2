@@ -1,0 +1,40 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(18, 22, 31, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--paper);
+}
+
+.links {
+  display: flex;
+  gap: 24px;
+}
+.links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--muted);
+}
+.links a:hover {
+  color: var(--signal);
+}
+
+@media (max-width: 640px) {
+  .links {
+    display: none;
+  }
+}

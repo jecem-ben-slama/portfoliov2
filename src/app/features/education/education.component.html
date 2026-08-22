@@ -1,0 +1,24 @@
+<section class="section" id="education">
+  <div class="section-head">
+    <p class="eyebrow">Education</p>
+    <h2>Where I studied</h2>
+  </div>
+
+  <div class="entries" *ngIf="education.length; else empty">
+    <div class="entry" *ngFor="let e of education">
+      <div class="entry-head">
+        <h3>{{ e.degree }} · {{ e.institution }}</h3>
+        <span class="date">{{ e.dateRange }}</span>
+      </div>
+      <div class="tags" *ngIf="e.coursework?.length">
+        <span class="tag" *ngFor="let c of e.coursework">{{ c }}</span>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #empty>
+    <p class="empty-note">
+      Add your degree, school, and relevant coursework in <code>core/data/experience.data.ts</code>.
+    </p>
+  </ng-template>
+</section>

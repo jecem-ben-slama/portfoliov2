@@ -1,0 +1,34 @@
+.hero {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 88px 24px 72px;
+}
+
+h1 {
+  font-size: clamp(30px, 4.5vw, 46px);
+  line-height: 1.18;
+  max-width: 18ch;
+  margin-bottom: 20px;
+}
+.accent {
+  color: var(--signal);
+}
+
+.value-prop {
+  color: var(--muted);
+  font-size: 17px;
+  max-width: 52ch;
+  margin: 0 0 28px;
+}
+
+.socials {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 56px 20px 48px;
+  }
+}

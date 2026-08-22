@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #12161f;
+  --ink-raised: #171c27;
+  --paper: #edeae0;
+  --paper-dim: #b9b6ac;
+  --line: #2b3242;
+  --signal: #e08a2c;
+  --signal-dim: #a66a26;
+  --state: #4f9c82;
+  --muted: #8892a6;
+  --radius: 10px;
+  --content-width: 960px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(139, 146, 166, 0.06) 39px,
+        rgba(139, 146, 166, 0.06) 40px
+      ),
+    repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 39px,
+        rgba(139, 146, 166, 0.06) 39px,
+        rgba(139, 146, 166, 0.06) 40px
+      ),
+    var(--ink);
+  color: var(--paper);
+  font-family: 'IBM Plex Sans', sans-serif;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin: 0 0 18px;
+}
+
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--paper);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.btn:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+.btn.primary {
+  background: var(--signal);
+  color: var(--ink);
+  border-color: var(--signal);
+  font-weight: 500;
+}
+.btn.primary:hover {
+  background: var(--signal-dim);
+  border-color: var(--signal-dim);
+  color: var(--ink);
+}
+
+.section {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 72px 24px;
+}
+.section-head {
+  margin-bottom: 40px;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 48px 20px;
+  }
+}

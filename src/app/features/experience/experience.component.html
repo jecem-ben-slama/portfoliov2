@@ -1,0 +1,28 @@
+<section class="section" id="experience">
+  <div class="section-head">
+    <p class="eyebrow">Experience</p>
+    <h2>Where I've worked</h2>
+  </div>
+
+  <div class="timeline" *ngIf="experience.length; else empty">
+    <div class="entry" *ngFor="let e of experience">
+      <div class="entry-head">
+        <h3>{{ e.role }} · {{ e.organization }}</h3>
+        <span class="date">{{ e.dateRange }}</span>
+      </div>
+      <ul>
+        <li *ngFor="let b of e.bullets">{{ b }}</li>
+      </ul>
+      <div class="tags" *ngIf="e.tags?.length">
+        <span class="tag" *ngFor="let t of e.tags">{{ t }}</span>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #empty>
+    <p class="empty-note">
+      Add real entries in <code>core/data/experience.data.ts</code> — role, organization, dates, and
+      a couple of bullets on real impact.
+    </p>
+  </ng-template>
+</section>

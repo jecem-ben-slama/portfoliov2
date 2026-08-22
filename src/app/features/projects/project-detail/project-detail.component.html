@@ -1,0 +1,87 @@
+<ng-container *ngIf="project$ | async as project; else notFound">
+  <div class="detail-page">
+    <a routerLink="/" fragment="projects" class="back-link">&larr; All projects</a>
+
+    <div class="split">
+      <!-- 30% sticky sidebar -->
+      <aside class="sidebar">
+        <span
+          class="status"
+          [class.active]="project.status === 'shipped'"
+          [class.progress]="project.status === 'in-progress'"
+          [class.draft]="project.status === 'draft'"
+        >
+          <span class="status-dot"></span>{{ project.status }}
+        </span>
+
+        <div class="links">
+          <a *ngIf="project.demoUrl" [href]="project.demoUrl" target="_blank" rel="noopener" class="btn primary">Live demo</a>
+          <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener" class="btn">GitHub</a>
+        </div>
+
+        <h3 class="side-heading">Stack</h3>
+        <div class="tags">
+          <span class="tag" *ngFor="let t of project.tags">{{ t }}</span>
+        </div>
+      </aside>
+
+      <!-- 70% main content -->
+      <main class="main">
+        <h1>{{ project.name }}</h1>
+        <p class="tagline">{{ project.tagline }}</p>
+
+        <div class="gallery" *ngIf="project.screenshots?.length">
+          <figure *ngFor="let s of project.screenshots">
+            <img *ngIf="s.src; else shotPlaceholder" [src]="s.src" [alt]="s.caption" />
+            <ng-template #shotPlaceholder>
+              <div class="img-placeholder">{{ s.caption }} (set src)</div>
+            </ng-template>
+            <figcaption>{{ s.caption }}</figcaption>
+          </figure>
+        </div>
+
+        <p class="hook">{{ project.hook }}</p>
+
+        <section class="block">
+          <h3>The problem</h3>
+          <p>{{ project.problem }}</p>
+        </section>
+
+        <section class="block">
+          <h3>How it works</h3>
+          <ul>
+            <li *ngFor="let step of project.how">{{ step }}</li>
+          </ul>
+        </section>
+
+        <section class="block">
+          <h3>What I'm proud of</h3>
+          <ul>
+            <li *ngFor="let p of project.proud"><b>{{ p.title }}</b> {{ p.detail }}</li>
+          </ul>
+        </section>
+
+        <section class="block" *ngIf="project.tradeoffs.length">
+          <h3>Trade-offs and lessons</h3>
+          <ul>
+            <li *ngFor="let t of project.tradeoffs">{{ t }}</li>
+          </ul>
+        </section>
+
+        <section class="block" *ngIf="project.learned?.length">
+          <h3>Process &amp; practices</h3>
+          <ul>
+            <li *ngFor="let l of project.learned">{{ l }}</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #notFound>
+  <div class="not-found">
+    <p>Project not found.</p>
+    <a routerLink="/" class="btn">&larr; Back home</a>
+  </div>
+</ng-template>

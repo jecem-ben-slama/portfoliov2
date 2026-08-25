@@ -3,15 +3,57 @@
 @tailwind utilities;
 
 :root {
-  --ink: #12161f;
-  --ink-raised: #171c27;
-  --paper: #edeae0;
-  --paper-dim: #b9b6ac;
-  --line: #2b3242;
-  --signal: #e08a2c;
-  --signal-dim: #a66a26;
-  --state: #4f9c82;
-  --muted: #8892a6;
+  /* ─────────────────────────────────────────
+     Core
+     ───────────────────────────────────────── */
+
+  --ink: #0a0d14;
+  --ink-raised: #111621;
+  --ink-hover: #171d2a;
+
+  /* ─────────────────────────────────────────
+     Typography
+     ───────────────────────────────────────── */
+
+  --paper: #f4f6fb;
+  --paper-dim: #b4bdce;
+  --muted: #7d879a;
+
+  /* ─────────────────────────────────────────
+     Borders
+     ───────────────────────────────────────── */
+
+  --line: #252d3d;
+  --line-soft: #1b2230;
+
+  /* ─────────────────────────────────────────
+     Primary — Indigo
+     ───────────────────────────────────────── */
+
+  --signal: #7c6cff;
+  --signal-dim: #6254d9;
+  --signal-soft: rgba(124, 108, 255, 0.12);
+
+  /* ─────────────────────────────────────────
+     Secondary — Cyan
+     ───────────────────────────────────────── */
+
+  --accent: #4cc9e8;
+  --accent-dim: #329bb7;
+  --accent-soft: rgba(76, 201, 232, 0.11);
+
+  /* ─────────────────────────────────────────
+     State — Emerald
+     ───────────────────────────────────────── */
+
+  --state: #4fd1a5;
+  --state-dim: #369b7b;
+  --state-soft: rgba(79, 209, 165, 0.11);
+
+  /* ─────────────────────────────────────────
+     Layout
+     ───────────────────────────────────────── */
+
   --radius: 10px;
   --content-width: 960px;
 }
@@ -27,21 +69,29 @@ body {
 
 body {
   margin: 0;
-  background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 39px,
-        rgba(139, 146, 166, 0.06) 39px,
-        rgba(139, 146, 166, 0.06) 40px
-      ),
+
+  background:
+    radial-gradient(
+      circle at 50% -20%,
+      rgba(124, 108, 255, 0.07),
+      transparent 45%
+    ),
     repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 39px,
-        rgba(139, 146, 166, 0.06) 39px,
-        rgba(139, 146, 166, 0.06) 40px
-      ),
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(125, 135, 154, 0.035) 39px,
+      rgba(125, 135, 154, 0.035) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      rgba(125, 135, 154, 0.035) 39px,
+      rgba(125, 135, 154, 0.035) 40px
+    ),
     var(--ink);
+
   color: var(--paper);
   font-family: 'IBM Plex Sans', sans-serif;
   line-height: 1.55;
@@ -77,6 +127,7 @@ a {
   padding: 3px 8px;
   border-radius: 20px;
   display: inline-block;
+  background: rgba(255, 255, 255, 0.015);
 }
 
 .btn {
@@ -89,25 +140,36 @@ a {
   padding: 10px 16px;
   border-radius: 6px;
   cursor: pointer;
+
   border: 1px solid var(--line);
-  background: none;
+  background: transparent;
   color: var(--paper);
-  transition: border-color 0.15s ease, color 0.15s ease;
+
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
+
 .btn:hover {
   border-color: var(--signal);
   color: var(--signal);
+  background: var(--signal-soft);
 }
+
 .btn.primary {
   background: var(--signal);
-  color: var(--ink);
+  color: #ffffff;
   border-color: var(--signal);
   font-weight: 500;
 }
+
 .btn.primary:hover {
   background: var(--signal-dim);
   border-color: var(--signal-dim);
-  color: var(--ink);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(124, 108, 255, 0.2);
 }
 
 .section {
@@ -115,6 +177,7 @@ a {
   margin: 0 auto;
   padding: 72px 24px;
 }
+
 .section-head {
   margin-bottom: 40px;
 }

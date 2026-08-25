@@ -1,10 +1,53 @@
 <header class="nav">
-  <a routerLink="/" class="brand">Your Name</a>
-  <nav class="links">
-    <a routerLink="/" fragment="projects">Projects</a>
-    <a routerLink="/" fragment="experience">Experience</a>
-    <a routerLink="/" fragment="education">Education</a>
-    <a routerLink="/" fragment="contact">Contact</a>
+
+  <a routerLink="/" class="brand" aria-label="Home">
+    Your Name
+  </a>
+
+  <nav class="links" aria-label="Main navigation">
+    <a routerLink="/" fragment="projects">
+      {{ i18n.t('nav.projects') }}
+    </a>
+
+    <a routerLink="/" fragment="experience">
+      {{ i18n.t('nav.experience') }}
+    </a>
+
+    <a routerLink="/" fragment="education">
+      {{ i18n.t('nav.education') }}
+    </a>
+
+    <a routerLink="/" fragment="contact">
+      {{ i18n.t('nav.contact') }}
+    </a>
   </nav>
-  <a class="btn primary" href="assets/resume.pdf" download>Resume</a>
+
+  <div class="nav-actions">
+
+    <!-- Language switcher -->
+    <div class="language-switcher" role="group" aria-label="Language">
+      <button type="button" [class.active]="i18n.is('en')" [attr.aria-pressed]="i18n.is('en')"
+        (click)="setLanguage('en')">
+        EN
+      </button>
+
+      <span class="language-divider">/</span>
+
+      <button type="button" [class.active]="i18n.is('fr')" [attr.aria-pressed]="i18n.is('fr')"
+        (click)="setLanguage('fr')">
+        FR
+      </button>
+    </div>
+
+    <!-- Resume -->
+    <a class="btn primary" [href]="
+        i18n.is('fr')
+          ? 'assets/resume-fr.pdf'
+          : 'assets/resume-en.pdf'
+      " download>
+      {{ i18n.t('nav.resume') }}
+    </a>
+
+  </div>
+
 </header>

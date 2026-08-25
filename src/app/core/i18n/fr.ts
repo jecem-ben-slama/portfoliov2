@@ -55,11 +55,46 @@ export const fr = {
     eyebrow: 'Expérience',
     title: 'Expérience',
 
-    internship: {
-      role: 'Stagiaire développeur Flutter',
-      company: 'Développement d’une application mobile',
-      description:
-        'Développement d’une application mobile e-commerce de meubles avec Flutter, avec participation à la conception de l’interface, à la logique applicative et à l’intégration des API.',
+    steg: {
+      role: 'Stagiaire développeur mobile & full-stack',
+      organization: 'STEG CTI',
+      dateRange: 'Juillet 2025',
+
+      bullets: [
+        'Développement d’un tableau de bord de gestion des stages sous forme de Proof-of-Concept (PoC) avec Flutter Web et PHP, afin de valider la viabilité d’un outil multiplateforme unifié pour le personnel administratif.',
+
+        'Mise en place de BLoC pour assurer une gestion d’état prévisible sur le client web et contourner les problèmes courants de blocage de l’interface liés au rendu Flutter Web.',
+
+        'Sécurisation des endpoints backend avec une authentification JWT et un contrôle d’accès basé sur les rôles (RBAC), établissant une base REST API sécurisée pour environ 10 utilisateurs internes simultanés.',
+      ],
+    },
+
+    cvpt: {
+      role: 'Stagiaire développeur mobile Flutter',
+      organization: 'CVPT',
+      dateRange: 'Janv. 2024 – Mai 2024',
+
+      bullets: [
+        'Conception d’un Proof-of-Concept visant à valider la faisabilité technique de la migration d’une application mobile native existante vers une base de code Flutter unifiée.',
+
+        'Mise en place de l’architecture initiale du projet en appliquant les principes de Clean Architecture et en découplant strictement les couches présentation, domaine et données pour faciliter la reprise du projet par l’équipe.',
+
+        'Intégration de BLoC pour gérer les flux de données REST API asynchrones, optimiser les reconstructions des widgets et éviter une gestion d’état difficile à maintenir.',
+      ],
+    },
+
+    evastin: {
+      role: 'Stagiaire développeur UI Flutter',
+      organization: 'EVASTIN',
+      dateRange: 'Juillet 2023 – Août 2023',
+
+      bullets: [
+        'Transformation de maquettes Figma statiques en écrans d’interface Flutter pour deux applications e-commerce.',
+
+        'Mise en pratique des fondamentaux de l’arbre de widgets Flutter, notamment la composition des layouts avec Rows, Columns et Stacks ainsi que le routage basique de l’interface.',
+
+        'Livraison de prototypes frontend visuels et statiques permettant aux parties prenantes de valider les parcours UI/UX avant toute intégration backend.',
+      ],
     },
   },
 
@@ -67,12 +102,17 @@ export const fr = {
     eyebrow: 'Formation',
     title: 'Formation',
 
-    engineering: {
-      degree: 'Ingénierie informatique',
+    iit: {
+      degree: 'Diplôme d’ingénieur - Informatique',
+      institution: 'Institut International de Technologie (IIT)',
+      dateRange: '2024 – Présent',
+    },
+
+    istic: {
+      degree: 'Licence - IoT & Systèmes embarqués',
       institution:
-        'Institut Supérieur des Technologies de l’Information et de la Communication',
-      description:
-        'Formation d’ingénieur axée sur le développement logiciel, l’informatique et les technologies de l’information.',
+        'Institut Supérieur des Technologies de l’Information et de la Communication (ISTIC)',
+      dateRange: '2021 – 2024',
     },
   },
 

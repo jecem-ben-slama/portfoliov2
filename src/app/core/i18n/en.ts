@@ -55,11 +55,46 @@ export const en = {
     eyebrow: 'Experience',
     title: 'Experience',
 
-    internship: {
-      role: 'Flutter Developer Intern',
-      company: 'Mobile Application Development',
-      description:
-        'Developed a furniture e-commerce mobile application using Flutter, working on UI implementation, application logic and API integration.',
+    steg: {
+      role: 'Mobile & Full-Stack Developer Intern',
+      organization: 'STEG CTI',
+      dateRange: 'July 2025',
+
+      bullets: [
+        'Developed a Proof-of-Concept (PoC) internship management dashboard using Flutter Web and PHP, validating the viability of a unified cross-platform tool for administrative staff.',
+
+        'Implemented BLoC for predictable state management across the web client, circumventing common UI-blocking issues inherent to Flutter Web rendering.',
+
+        'Secured backend endpoints via JWT authentication and Role-Based Access Control (RBAC), establishing a safe REST API foundation for ~10 concurrent internal users.',
+      ],
+    },
+
+    cvpt: {
+      role: 'Flutter Mobile Developer Intern',
+      organization: 'CVPT',
+      dateRange: 'Jan 2024 – May 2024',
+
+      bullets: [
+        'Architected a foundational Proof-of-Concept to validate the technical feasibility of migrating a legacy native mobile application to a unified Flutter codebase.',
+
+        'Established the "Zero-to-One" project architecture, enforcing Clean Architecture principles by strictly decoupling presentation, domain, and data layers for the final team hand-off.',
+
+        'Integrated BLoC state management to handle asynchronous REST API data streams, ensuring optimal widget rebuilds and eliminating spaghetti state.',
+      ],
+    },
+
+    evastin: {
+      role: 'Flutter UI Developer Intern',
+      organization: 'EVASTIN',
+      dateRange: 'July 2023 – Aug 2023',
+
+      bullets: [
+        'Translated static Figma design mockups into raw Flutter UI screens for two e-commerce applications.',
+
+        'Navigated core Flutter widget tree fundamentals, focusing on layout composition (Rows, Columns, Stacks) and basic UI routing.',
+
+        'Delivered visual, static frontend prototypes to stakeholders to validate UI/UX flows prior to any backend integration.',
+      ],
     },
   },
 
@@ -67,12 +102,17 @@ export const en = {
     eyebrow: 'Education',
     title: 'Education',
 
-    engineering: {
-      degree: 'Computer Engineering',
+    iit: {
+      degree: 'Engineering Degree - Computer Science',
+      institution: 'Institut International de Technologie (IIT)',
+      dateRange: '2024 – Present',
+    },
+
+    istic: {
+      degree: "Bachelor's Degree - IoT & Embedded Systems",
       institution:
-        'Higher Institute of Information and Communication Technologies',
-      description:
-        'Engineering studies focused on software development, computer science and information technologies.',
+        'Institut Supérieur des Technologies de l’Information et de la Communication (ISTIC)',
+      dateRange: '2021 – 2024',
     },
   },
 

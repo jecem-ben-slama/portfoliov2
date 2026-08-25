@@ -130,17 +130,16 @@ export const fr = {
 
   contact: {
     eyebrow: 'Contact',
-    title: 'Travaillons ensemble.',
-    description:
-      'Vous avez un projet, une opportunité ou souhaitez simplement me contacter ? N’hésitez pas à m’envoyer un message.',
 
-    name: 'Nom',
-    email: 'E-mail',
-    message: 'Message',
-    send: 'Envoyer le message',
-    sending: 'Envoi...',
-    success: 'Votre message a été envoyé avec succès.',
-    error: 'Une erreur est survenue. Veuillez réessayer.',
+    title:
+      'À la recherche d’un poste junior en ingénierie logicielle, orienté mobile et backend.',
+
+    description:
+      'Vous souhaitez échanger sur une opportunité ou discuter d’un projet ? N’hésitez pas à me contacter.',
+
+    email: 'M’envoyer un e-mail',
+
+    resume: 'Télécharger le CV',
   },
 
   footer: {

@@ -127,20 +127,18 @@ export const en = {
     database: 'Databases',
     tools: 'Tools',
   },
-
   contact: {
-    eyebrow: 'Get in touch',
-    title: 'Let’s work together.',
-    description:
-      'Have a project, opportunity or simply want to get in touch? Feel free to send me a message.',
+    eyebrow: 'Contact',
 
-    name: 'Name',
-    email: 'Email',
-    message: 'Message',
-    send: 'Send message',
-    sending: 'Sending...',
-    success: 'Your message has been sent successfully.',
-    error: 'Something went wrong. Please try again.',
+    title:
+      'Currently looking for junior Software Engineering roles in mobile and backend.',
+
+    description:
+      'Interested in working together or discussing an opportunity? Feel free to get in touch.',
+
+    email: 'Email me',
+
+    resume: 'Download resume',
   },
 
   footer: {

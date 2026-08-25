@@ -1,10 +1,35 @@
 <section class="section" id="contact">
+
   <div class="contact-box">
-    <p class="eyebrow">Contact</p>
-    <h2>Currently looking for junior Software Engineering roles in mobile and backend.</h2>
+
+    <p class="eyebrow">
+      {{ i18n.t('contact.eyebrow') }}
+    </p>
+
+    <h2>
+      {{ i18n.t('contact.title') }}
+    </h2>
+
+    <p class="description">
+      {{ i18n.t('contact.description') }}
+    </p>
+
     <div class="actions">
-      <a href="mailto:you@example.com" class="btn primary large">Email me</a>
-      <a href="assets/resume.pdf" download class="btn large">Download resume</a>
+
+      <a href="mailto:you@example.com" class="btn primary large">
+        {{ i18n.t('contact.email') }}
+      </a>
+
+      <a [href]="
+          i18n.is('fr')
+            ? 'assets/resume-fr.pdf'
+            : 'assets/resume-en.pdf'
+        " download class="btn large">
+        {{ i18n.t('contact.resume') }}
+      </a>
+
     </div>
+
   </div>
+
 </section>

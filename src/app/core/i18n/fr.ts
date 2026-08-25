@@ -8,10 +8,13 @@ export const fr = {
   },
 
   hero: {
-    eyebrow: 'Étudiant en ingénierie logicielle',
-    title: 'Je crée des logiciels qui répondent à de vrais besoins.',
+    eyebrow: 'Ingénieur logiciel',
+
+    title: 'Comprendre l’architecture logicielle, un système à la fois.',
+
     description:
-      'Étudiant en ingénierie informatique passionné par le développement logiciel, les technologies web et les applications mobiles.',
+      'Étudiant en ingénierie informatique, spécialisé dans le développement Flutter et les backends avec Spring Boot, avec un intérêt particulier pour la gestion d’état, les API sécurisées et la création d’outils pratiques de bout en bout.',
+
     viewProjects: 'Voir mes projets',
     contactMe: 'Me contacter',
   },

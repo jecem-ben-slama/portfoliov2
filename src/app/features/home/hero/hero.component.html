@@ -1,17 +1,31 @@
 <section class="hero">
-  <p class="eyebrow">Software Engineer</p>
-  <h1>
-    Your Name — <span class="accent">Flutter &amp; Backend</span> engineer who
-    likes systems that don't fall over.
-  </h1>
-  <p class="value-prop">
-    I build things because something specific was annoying me — a job hunt
-    with no signal on what was actually wrong, a TV remote with zero
-    documentation. Backend-leaning, comfortable end to end.
+
+  <p class="eyebrow">
+    {{ i18n.t('hero.eyebrow') }}
   </p>
+
+  <h1>
+    {{ i18n.t('hero.title') }}
+  </h1>
+
+  <p class="value-prop">
+    {{ i18n.t('hero.description') }}
+  </p>
+
   <div class="socials">
-    <a href="https://github.com/your-username" target="_blank" rel="noopener" class="btn">GitHub</a>
-    <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener" class="btn">LinkedIn</a>
-    <a href="mailto:you@example.com" class="btn primary">Email me</a>
+
+    <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" class="btn">
+      GitHub
+    </a>
+
+    <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer" class="btn">
+      LinkedIn
+    </a>
+
+    <a href="mailto:you@example.com" class="btn primary">
+      {{ i18n.t('hero.contactMe') }}
+    </a>
+
   </div>
+
 </section>

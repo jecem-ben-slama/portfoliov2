@@ -8,13 +8,16 @@ export const en = {
   },
 
   hero: {
-    eyebrow: 'Software Engineering Student',
-    title: 'Building software that solves real problems.',
+    eyebrow: 'Software Engineer',
+
+    title: 'Figuring out software architecture, one system at a time.',
+
     description:
-      'Computer engineering student passionate about software development, web technologies and mobile applications.',
+      'Computer engineering student focused on Flutter and Spring Boot backend development, with a particular interest in state management, secure APIs, and building practical tools from the ground up.',
+
     viewProjects: 'View projects',
-    contactMe: 'Contact me',
-  },
+    contactMe: 'Get in touch',
+  },  
 
   about: {
     eyebrow: 'About me',

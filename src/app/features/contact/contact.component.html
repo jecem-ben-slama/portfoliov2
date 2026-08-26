@@ -1,5 +1,4 @@
 <section class="section" id="contact">
-
   <div class="contact-box">
 
     <p class="eyebrow">
@@ -16,20 +15,27 @@
 
     <div class="actions">
 
-      <a href="mailto:you@example.com" class="btn primary large">
+      <!-- Primary mailto link -->
+      <a [href]="mailtoLink" class="btn primary large">
         {{ i18n.t('contact.email') }}
       </a>
 
-      <a [href]="
-          i18n.is('fr')
-            ? 'assets/resume-fr.pdf'
-            : 'assets/resume-en.pdf'
-        " download class="btn large">
+      <!-- Fallback / Copy button right beside it -->
+      <button (click)="copyEmail($event)" class="btn large">
+        {{ copied ? 'Copied to clipboard!' : 'Copy Email' }}
+      </button>
+
+      <!-- Resume download -->
+      <a [href]="resumePath" download class="btn large">
         {{ i18n.t('contact.resume') }}
       </a>
 
     </div>
 
-  </div>
+    <!-- Always visible raw text option just in case -->
+    <p class="email-fallback-text">
+      Or reach out directly at: <code>{{ emailAddress }}</code>
+    </p>
 
+  </div>
 </section>

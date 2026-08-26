@@ -1,41 +1,73 @@
 <section class="section" id="contact">
   <div class="contact-box">
 
-    <p class="eyebrow">
-      {{ i18n.t('contact.eyebrow') }}
-    </p>
+    <!-- Header -->
+    <div class="contact-header">
+      <p class="eyebrow">
+        {{ i18n.t('contact.eyebrow') }}
+      </p>
 
-    <h2>
-      {{ i18n.t('contact.title') }}
-    </h2>
+      <h2>
+        {{ i18n.t('contact.title') }}
+      </h2>
 
-    <p class="description">
-      {{ i18n.t('contact.description') }}
-    </p>
+      <p class="description">
+        {{ i18n.t('contact.description') }}
+      </p>
+    </div>
 
+    <!-- Main actions -->
     <div class="actions">
 
-      <!-- Primary mailto link -->
-      <a [href]="mailtoLink" class="btn primary large">
+      <!-- Primary action -->
+      <button type="button" class="btn primary large email-button" (click)="sendEmail()">
         {{ i18n.t('contact.email') }}
-      </a>
-
-      <!-- Fallback / Copy button right beside it -->
-      <button (click)="copyEmail($event)" class="btn large">
-        {{ copied ? 'Copied to clipboard!' : 'Copy Email' }}
       </button>
 
-      <!-- Resume download -->
-      <a [href]="resumePath" download class="btn large">
+      <!-- Secondary action -->
+      <a [href]="resumePath" download class="btn large resume-button">
         {{ i18n.t('contact.resume') }}
       </a>
 
     </div>
 
-    <!-- Always visible raw text option just in case -->
-    <p class="email-fallback-text">
-      Or reach out directly at: <code>{{ emailAddress }}</code>
-    </p>
+    <!-- Email utility -->
+    <div class="email-row">
+
+    
+
+      <div class="email-copy-container">
+
+        <span class="email-text">
+          {{ emailAddress }}
+        </span>
+
+        <button type="button" class="copy-button" [class.copied]="copied" (click)="copyEmail()" [attr.aria-label]="
+            copied
+              ? i18n.t('contact.copied')
+              : i18n.t('contact.copy')
+          ">
+
+          <!-- Copy -->
+          <svg *ngIf="!copied" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+
+          <!-- Success -->
+          <svg *ngIf="copied" class="check-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+
+        </button>
+
+      </div>
+
+    </div>
 
   </div>
 </section>

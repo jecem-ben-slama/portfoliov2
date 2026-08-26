@@ -40,11 +40,8 @@
     </div>
 
     <!-- Resume -->
-    <a class="btn primary" [href]="
-        i18n.is('fr')
-          ? 'assets/resume-fr.pdf'
-          : 'assets/resume-en.pdf'
-      " download>
+    <!-- Resume -->
+    <a class="btn primary" [href]="resumePath" download>
       {{ i18n.t('nav.resume') }}
     </a>
 

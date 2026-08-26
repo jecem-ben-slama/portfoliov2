@@ -143,6 +143,8 @@ export const fr = {
     email: 'M’envoyer un e-mail',
 
     resume: 'Télécharger le CV',
+    copied: 'copié dans le presse-papiers',
+    copy: 'copier l’adresse e-mail',
   },
 
   footer: {

@@ -17,7 +17,7 @@ export const en = {
 
     viewProjects: 'View projects',
     contactMe: 'Get in touch',
-  },  
+  },
 
   about: {
     eyebrow: 'About me',
@@ -142,6 +142,8 @@ export const en = {
     email: 'Email me',
 
     resume: 'Download resume',
+    copied:'copied to clipboard',
+    copy:'Copy email address',
   },
 
   footer: {

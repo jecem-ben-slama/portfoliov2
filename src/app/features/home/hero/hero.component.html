@@ -22,9 +22,10 @@
       LinkedIn
     </a>
 
-    <a href="mailto:benslemajecem@gmail.com" class="btn primary">
+    <!-- Updated to use the shared service click handler -->
+    <button type="button" (click)="onContactClick($event)" class="btn primary">
       {{ i18n.t('hero.contactMe') }}
-    </a>
+    </button>
 
   </div>
 

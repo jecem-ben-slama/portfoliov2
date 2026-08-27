@@ -1,23 +1,27 @@
 <section class="section" id="projects">
   <div class="section-head">
-    <p class="eyebrow">Projects</p>
-    <h2>What I've actually built</h2>
+    <p class="eyebrow">
+      {{ i18n.t('projects.eyebrow') }}
+    </p>
+    <h2>
+      {{ i18n.t('projects.title') }}
+    </h2>
   </div>
 
   <div class="filter-bar">
-    <button
-      *ngFor="let f of filters"
-      class="filter-btn"
-      [class.active]="activeFilter() === f.value"
-      (click)="setFilter(f.value)"
-    >
-      {{ f.label }}
+    <button *ngFor="let f of filters" class="filter-btn" [class.active]="activeFilter() === f.value"
+      (click)="setFilter(f.value)">
+      {{ i18n.t(f.labelKey) }}
     </button>
   </div>
 
-  <div class="grid">
+  <div class="grid" *ngIf="filteredProjects().length; else empty">
     <app-project-card *ngFor="let project of filteredProjects()" [project]="project"></app-project-card>
   </div>
 
-  <p class="empty" *ngIf="filteredProjects().length === 0">Nothing in this category yet.</p>
+  <ng-template #empty>
+    <p class="empty">
+      {{ i18n.t('projects.empty') }}
+    </p>
+  </ng-template>
 </section>

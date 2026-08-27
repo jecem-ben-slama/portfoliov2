@@ -30,33 +30,27 @@ export const fr = {
 
   projects: {
     eyebrow: 'Réalisations',
-    title: 'Projets',
-
+    title: 'Mes réalisations concrètes',
     viewProject: 'Voir le projet',
+    featured: 'En vedette',
+    setImage: 'image : définir project.image',
     viewCode: 'Voir le code',
-
-    internship: {
-      title: 'Système de gestion des stages',
-      description:
-        'Une plateforme permettant de gérer l’ensemble du cycle de vie des stages, notamment les candidatures, validations, notes, attestations et rapports.',
-    },
-
-    furniture: {
-      title: 'Application e-commerce de meubles',
-      description:
-        'Une application mobile permettant de consulter des meubles, gérer un panier et acheter des produits.',
-    },
-
-    medical: {
-      title: 'Application de prise de rendez-vous médical',
-      description:
-        'Une application mobile permettant de rechercher des médecins, prendre des rendez-vous et gérer des informations médicales.',
-    },
+    readMore: 'Lire l’analyse détaillée',
+    // Add these project detail labels:
+    allProjects: 'Tous les projets',
+    liveDemo: 'Démo en direct',
+    github: 'GitHub',
+    stack: 'Technologies',
+    problem: 'Le problème',
+    howItWorks: 'Fonctionnement',
+    proudOf: 'Ce dont je suis fier',
+    tradeoffs: 'Compromis et leçons',
+    processPractices: 'Processus et pratiques',
+    notFound: 'Projet introuvable.',
+    backHome: "Retour à l'accueil",
   },
-
   experience: {
     eyebrow: 'Expérience',
-    title: 'Expérience',
 
     steg: {
       role: 'Stagiaire développeur mobile & full-stack',
@@ -103,7 +97,6 @@ export const fr = {
 
   education: {
     eyebrow: 'Formation',
-    title: 'Formation',
 
     iit: {
       degree: 'Diplôme d’ingénieur - Informatique',
@@ -150,5 +143,12 @@ export const fr = {
   footer: {
     rights: 'Tous droits réservés.',
     builtWith: 'Créé avec Angular',
+  },
+  filters: {
+    all: 'Tous',
+    commercial: 'Commercial',
+    mobile: 'Mobile',
+    webFrontend: 'Web Frontend',
+    backend: 'Backend & API',
   },
 };

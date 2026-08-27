@@ -1,77 +1,80 @@
 <ng-container *ngIf="project$ | async as project; else notFound">
   <div class="detail-page">
-    <a routerLink="/" fragment="projects" class="back-link">&larr; All projects</a>
+    <a routerLink="/" fragment="projects" class="back-link">&larr; {{ i18n.t('projects.allProjects') }}</a>
 
     <div class="split">
-      <!-- 30% sticky sidebar -->
+      <!-- 30% sticky sidebar (stacks to bottom on mobile) -->
       <aside class="sidebar">
-        <span
-          class="status"
-          [class.active]="project.status === 'shipped'"
-          [class.progress]="project.status === 'in-progress'"
-          [class.draft]="project.status === 'draft'"
-        >
+        <span class="status" [class.active]="project.status === 'shipped'"
+          [class.progress]="project.status === 'in-progress'" [class.draft]="project.status === 'draft'">
           <span class="status-dot"></span>{{ project.status }}
         </span>
 
         <div class="links">
-          <a *ngIf="project.demoUrl" [href]="project.demoUrl" target="_blank" rel="noopener" class="btn primary">Live demo</a>
-          <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener" class="btn">GitHub</a>
+          <a *ngIf="project.demoUrl" [href]="project.demoUrl" target="_blank" rel="noopener" class="btn primary">
+            {{ i18n.t('projects.liveDemo') }}
+          </a>
+          <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener" class="btn">
+            {{ i18n.t('projects.github') }}
+          </a>
         </div>
 
-        <h3 class="side-heading">Stack</h3>
+        <h3 class="side-heading">{{ i18n.t('projects.stack') }}</h3>
         <div class="tags">
           <span class="tag" *ngFor="let t of project.tags">{{ t }}</span>
         </div>
+
+        <!-- Process & practices (hidden if empty) -->
+        <section class="block sidebar-block" *ngIf="getLocalizedArray(project.learned).length > 0">
+          <h3 class="side-heading">{{ i18n.t('projects.processPractices') }}</h3>
+          <ul class="sidebar-list">
+            <li *ngFor="let l of getLocalizedArray(project.learned)">{{ l }}</li>
+          </ul>
+        </section>
       </aside>
 
       <!-- 70% main content -->
       <main class="main">
         <h1>{{ project.name }}</h1>
-        <p class="tagline">{{ project.tagline }}</p>
+        <p class="tagline">{{ getLocalized(project.tagline) }}</p>
 
         <div class="gallery" *ngIf="project.screenshots?.length">
           <figure *ngFor="let s of project.screenshots">
-            <img *ngIf="s.src; else shotPlaceholder" [src]="s.src" [alt]="s.caption" />
+            <img *ngIf="s.src; else shotPlaceholder" [src]="s.src" [alt]="getLocalized(s.caption)" />
             <ng-template #shotPlaceholder>
-              <div class="img-placeholder">{{ s.caption }} (set src)</div>
+              <div class="img-placeholder">{{ getLocalized(s.caption) }} (set src)</div>
             </ng-template>
-            <figcaption>{{ s.caption }}</figcaption>
+            <figcaption>{{ getLocalized(s.caption) }}</figcaption>
           </figure>
         </div>
 
-        <p class="hook">{{ project.hook }}</p>
+        <p class="hook">{{ getLocalized(project.hook) }}</p>
 
         <section class="block">
-          <h3>The problem</h3>
-          <p>{{ project.problem }}</p>
+          <h3>{{ i18n.t('projects.problem') }}</h3>
+          <p>{{ getLocalized(project.problem) }}</p>
         </section>
 
         <section class="block">
-          <h3>How it works</h3>
+          <h3>{{ i18n.t('projects.howItWorks') }}</h3>
           <ul>
-            <li *ngFor="let step of project.how">{{ step }}</li>
+            <li *ngFor="let step of getLocalizedArray(project.how)">{{ step }}</li>
           </ul>
         </section>
 
         <section class="block">
-          <h3>What I'm proud of</h3>
+          <h3>{{ i18n.t('projects.proudOf') }}</h3>
           <ul>
-            <li *ngFor="let p of project.proud"><b>{{ p.title }}</b> {{ p.detail }}</li>
+            <li *ngFor="let p of project.proud">
+              <b>{{ getLocalized(p.title) }}</b> {{ getLocalized(p.detail) }}
+            </li>
           </ul>
         </section>
 
-        <section class="block" *ngIf="project.tradeoffs.length">
-          <h3>Trade-offs and lessons</h3>
+        <section class="block" *ngIf="getLocalizedArray(project.tradeoffs).length > 0">
+          <h3>{{ i18n.t('projects.tradeoffs') }}</h3>
           <ul>
-            <li *ngFor="let t of project.tradeoffs">{{ t }}</li>
-          </ul>
-        </section>
-
-        <section class="block" *ngIf="project.learned?.length">
-          <h3>Process &amp; practices</h3>
-          <ul>
-            <li *ngFor="let l of project.learned">{{ l }}</li>
+            <li *ngFor="let t of getLocalizedArray(project.tradeoffs)">{{ t }}</li>
           </ul>
         </section>
       </main>
@@ -81,7 +84,7 @@
 
 <ng-template #notFound>
   <div class="not-found">
-    <p>Project not found.</p>
-    <a routerLink="/" class="btn">&larr; Back home</a>
+    <p>{{ i18n.t('projects.notFound') }}</p>
+    <a routerLink="/" class="btn">&larr; {{ i18n.t('projects.backHome') }}</a>
   </div>
 </ng-template>

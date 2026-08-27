@@ -29,34 +29,28 @@ export const en = {
   },
 
   projects: {
-    eyebrow: 'Selected work',
-    title: 'Projects',
-
+    eyebrow: 'Projects',
+    title: "What I've actually built",
+    featured: 'Featured',
+    setImage: 'image: set project.image',
     viewProject: 'View project',
     viewCode: 'View code',
-
-    internship: {
-      title: 'Internship Management System',
-      description:
-        'A platform designed to manage the complete internship lifecycle, including applications, validation, grades, certificates and reports.',
-    },
-
-    furniture: {
-      title: 'Furniture E-Commerce App',
-      description:
-        'A mobile application for browsing furniture, managing a shopping cart and purchasing products.',
-    },
-
-    medical: {
-      title: 'Medical Appointment App',
-      description:
-        'A mobile application for discovering doctors, booking appointments and managing medical information.',
-    },
+    readMore: 'Read the breakdown',
+    // Add these project detail labels:
+    allProjects: 'All projects',
+    liveDemo: 'Live demo',
+    github: 'GitHub',
+    stack: 'Stack',
+    problem: 'The problem',
+    howItWorks: 'How it works',
+    proudOf: "What I'm proud of",
+    tradeoffs: 'Trade-offs and lessons',
+    processPractices: 'Process & practices',
+    notFound: 'Project not found.',
+    backHome: 'Back home',
   },
-
   experience: {
     eyebrow: 'Experience',
-    title: 'Experience',
 
     steg: {
       role: 'Mobile & Full-Stack Developer Intern',
@@ -103,7 +97,6 @@ export const en = {
 
   education: {
     eyebrow: 'Education',
-    title: 'Education',
 
     iit: {
       degree: 'Engineering Degree - Computer Science',
@@ -142,12 +135,19 @@ export const en = {
     email: 'Email me',
 
     resume: 'Download resume',
-    copied:'copied to clipboard',
-    copy:'Copy email address',
+    copied: 'copied to clipboard',
+    copy: 'Copy email address',
   },
 
   footer: {
     rights: 'All rights reserved.',
     builtWith: 'Built with Angular',
+  },
+  filters: {
+    all: 'All',
+    commercial: 'Commercial',
+    mobile: 'Mobile',
+    webFrontend: 'Web Frontend',
+    backend: 'Backend & API',
   },
 };

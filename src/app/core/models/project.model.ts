@@ -1,21 +1,35 @@
-export type ProjectCategory = 'mobile' | 'web-frontend' | 'backend' | 'commercial';
+export type ProjectCategory =
+  | 'mobile'
+  | 'web-frontend'
+  | 'backend'
+  | 'commercial';
 export type ProjectStatus = 'shipped' | 'in-progress' | 'draft';
 
+export type LocalizedString = {
+  en: string;
+  fr: string;
+};
+
+export type LocalizedStringArray = {
+  en: string[];
+  fr: string[];
+};
+
 export interface ProjectHighlight {
-  title: string;
-  detail: string;
+  title: LocalizedString;
+  detail: LocalizedString;
 }
 
 export interface ProjectScreenshot {
   src: string;
-  caption: string;
+  caption: LocalizedString;
 }
 
 export interface Project {
   slug: string;
   name: string;
-  tagline: string;
-  description: string;
+  tagline: LocalizedString;
+  description: LocalizedString;
   categories: ProjectCategory[];
   featured: boolean;
   status: ProjectStatus;
@@ -25,16 +39,10 @@ export interface Project {
   image?: string;
   screenshots?: ProjectScreenshot[];
 
-  /** Personal reason the project exists. Keep it specific and true. */
-  hook: string;
-  /** What problem it actually solves. */
-  problem: string;
-  /** Ordered steps describing how it works. */
-  how: string[];
-  /** Genuine technical highlights, not generic praise. */
+  hook: LocalizedString;
+  problem: LocalizedString;
+  how: LocalizedStringArray;
   proud: ProjectHighlight[];
-  /** Real trade-offs and constraints. */
-  tradeoffs: string[];
-  /** Optional: process/practice lessons (git flow, environments, source of truth, etc.) */
-  learned?: string[];
+  tradeoffs: LocalizedStringArray;
+  learned?: LocalizedStringArray;
 }

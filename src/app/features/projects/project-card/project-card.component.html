@@ -1,31 +1,107 @@
 <a class="card" [routerLink]="['/projects', project.slug]">
-  <span class="featured-badge" *ngIf="project.featured">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 2l2.9 6.5L22 9.3l-5 4.9 1.2 7.1L12 17.9l-6.2 3.4L7 14.2 2 9.3l7.1-.8L12 2z" />
-    </svg>
-    {{ i18n.t('projects.featured') }}
-  </span>
 
-  <img *ngIf="project.image; else placeholder" class="card-img" [src]="project.image"
-    [alt]="project.name + ' screenshot'" loading="lazy" />
-  <ng-template #placeholder>
-    <div class="img-placeholder">{{ i18n.t('projects.setImage') }}</div>
-  </ng-template>
+  <!-- Project image -->
+  <div class="card-media">
 
-  <span class="status" [class.active]="project.status === 'shipped'" [class.progress]="project.status === 'in-progress'"
-    [class.draft]="project.status === 'draft'">
-    <span class="status-dot"></span>{{ project.status }}
-  </span>
+    <img *ngIf="project.image; else placeholder" class="card-img" [src]="project.image"
+      [alt]="project.name + ' screenshot'" loading="lazy" />
 
-  <h2>{{ project.name }}</h2>
-  <p class="tagline">{{ getLocalized(project.tagline) }}</p>
-  <p class="desc">{{ getLocalized(project.description) }}</p>
+    <ng-template #placeholder>
+      <div class="img-placeholder">
+        <span>{{ i18n.t('projects.setImage') }}</span>
+      </div>
+    </ng-template>
 
-  <div class="tags">
-    <span class="tag" *ngFor="let t of project.tags">{{ t }}</span>
+    <!-- Featured -->
+    <span class="featured-badge" *ngIf="project.featured">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2l2.9 6.5L22 9.3l-5 4.9 1.2 7.1L12 17.9l-6.2 3.4L7 14.2 2 9.3l7.1-.8L12 2z" />
+      </svg>
+
+      {{ i18n.t('projects.featured') }}
+    </span>
+
   </div>
 
+
+  <!-- Card body -->
+  <div class="card-body">
+
+    <!-- Meta -->
+    <div class="card-meta">
+
+      <span class="status" [class.active]="project.status === 'shipped'"
+        [class.progress]="project.status === 'in-progress'" [class.draft]="project.status === 'draft'">
+        <span class="status-dot"></span>
+        {{ project.status }}
+      </span>
+
+      <span class="project-index">
+        {{ project.slug }}
+      </span>
+
+    </div>
+
+
+    <!-- Title -->
+    <div class="title-row">
+
+      <div>
+        
+
+        <h2>
+          {{ project.name }}
+        </h2>
+      </div>
+
+      <span class="open-icon" aria-hidden="true">
+        ↗
+      </span>
+
+    </div>
+
+
+    <!-- Tagline -->
+    <p class="tagline">
+      {{ getLocalized(project.tagline) }}
+    </p>
+
+
+    <!-- Description -->
+    <p class="desc">
+      {{ getLocalized(project.description) }}
+    </p>
+
+
+    <!-- Stack -->
+    <div class="stack" *ngIf="project.tags.length">
+
+      <span class="stack-label">
+        {{ i18n.t('projects.stack') }}
+      </span>
+
+      <div class="tags">
+        <span class="tag" *ngFor="let t of project.tags">
+          {{ t }}
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Footer -->
   <div class="card-foot">
-    <span class="read-more">{{ i18n.t('projects.readMore') }} &rarr;</span>
+
+    <span class="foot-label">
+      {{ i18n.t('projects.readMore') }}
+    </span>
+
+    <span class="foot-arrow">
+      →
+    </span>
+
   </div>
+
 </a>

@@ -1,125 +1,586 @@
+/* ================================================== */
+/* PROJECT CARD */
+/* ================================================== */
+
 .card {
   position: relative;
-  background: var(--ink-raised);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 22px 22px 20px;
+
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  text-decoration: none;
+
+  min-height: 100%;
+
+  overflow: hidden;
+
+  background: var(--ink-raised);
+
+  border: 1px solid var(--line);
+  border-radius: 14px;
+
   color: inherit;
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-.card:hover {
-  border-color: var(--signal-dim);
-  transform: translateY(-2px);
+  text-decoration: none;
+
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    background 180ms ease;
 }
 
-.featured-badge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--signal);
-  background: rgba(18, 22, 31, 0.85);
-  border: 1px solid var(--signal-dim);
-  padding: 4px 8px;
-  border-radius: 20px;
+
+/* ================================================== */
+/* HOVER */
+/* ================================================== */
+
+.card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(139, 92, 246, 0.45);
+
+  background: var(--ink-raised);
 }
-.featured-badge svg {
-  width: 10px;
-  height: 10px;
-  fill: var(--signal);
+
+.card:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
 }
+
+
+/* ================================================== */
+/* MEDIA */
+/* ================================================== */
+
+.card-media {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  background: var(--ink);
+
+  border-bottom: 1px solid var(--line);
+}
+
 
 .card-img,
 .img-placeholder {
+  display: block;
+
   width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 6px;
+  height: 100%;
+
   object-fit: cover;
-  background: var(--ink);
-  border: 1px solid var(--line);
+
+  transition:
+    transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 250ms ease;
 }
+
+
+.card:hover .card-img {
+  transform: scale(1.025);
+
+  filter: brightness(0.94);
+}
+
+
+/* ================================================== */
+/* IMAGE OVERLAY */
+/* ================================================== */
+
+.card-media::after {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(7, 10, 16, 0.05),
+      rgba(7, 10, 16, 0.18)
+    );
+}
+
+
+/* ================================================== */
+/* PLACEHOLDER */
+/* ================================================== */
+
 .img-placeholder {
   display: flex;
+
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 10px;
-  border-style: dashed;
+
+  padding: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--ink),
+      var(--ink-raised)
+    );
+
+  border: 0;
+
+  color: var(--muted);
+
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  color: var(--muted);
+  letter-spacing: 0.04em;
 }
+
+
+/* ================================================== */
+/* FEATURED */
+/* ================================================== */
+
+.featured-badge {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  z-index: 3;
+
+  display: inline-flex;
+
+  align-items: center;
+  gap: 6px;
+
+  padding: 5px 8px;
+
+  background: rgba(11, 15, 23, 0.9);
+
+  border: 1px solid rgba(139, 92, 246, 0.5);
+
+  border-radius: 6px;
+
+  color: var(--signal);
+
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+
+  backdrop-filter: blur(6px);
+}
+
+
+.featured-badge svg {
+  width: 10px;
+  height: 10px;
+
+  fill: currentColor;
+}
+
+
+/* ================================================== */
+/* CARD BODY */
+/* ================================================== */
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  padding: 21px 20px 20px;
+}
+
+
+/* ================================================== */
+/* META */
+/* ================================================== */
+
+.card-meta {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
 
 .status {
   display: inline-flex;
+
   align-items: center;
   gap: 7px;
+
+  color: var(--muted);
+
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
+
+  font-weight: 500;
+
   letter-spacing: 0.08em;
+
   text-transform: uppercase;
-  width: fit-content;
 }
+
+
 .status-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
   border-radius: 50%;
+
   background: currentColor;
 }
+
+
 .status.active {
   color: var(--state);
 }
+
+
 .status.progress {
   color: var(--signal);
 }
+
+
 .status.draft {
   color: var(--muted);
 }
 
-h2 {
-  font-size: 21px;
+
+.project-index {
+  max-width: 120px;
+
+  overflow: hidden;
+
+  color: var(--muted);
+
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+
+  letter-spacing: 0.04em;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  opacity: 0.65;
 }
+
+
+/* ================================================== */
+/* TITLE */
+/* ================================================== */
+
+.title-row {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 16px;
+}
+
+
+.eyebrow {
+  margin: 0 0 7px;
+
+  color: var(--signal);
+
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.11em;
+
+  text-transform: uppercase;
+}
+
+
+.title-row h2 {
+  margin: 0;
+
+  color: var(--paper);
+
+  font-size: 21px;
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.015em;
+}
+
+
+/* ================================================== */
+/* OPEN ICON */
+/* ================================================== */
+
+.open-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  border: 1px solid var(--line);
+
+  border-radius: 7px;
+
+  color: var(--muted);
+
+  font-size: 15px;
+
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+
+.card:hover .open-icon {
+  color: var(--signal);
+
+  border-color: var(--signal-dim);
+
+  background: rgba(139, 92, 246, 0.04);
+
+  transform: translate(1px, -1px);
+}
+
+
+/* ================================================== */
+/* TAGLINE */
+/* ================================================== */
 
 .tagline {
-  margin: -8px 0 0;
+  margin: 8px 0 0;
+
   color: var(--muted);
-  font-size: 14px;
+
+  font-size: 13px;
+
+  line-height: 1.55;
 }
 
+
+/* ================================================== */
+/* DESCRIPTION */
+/* ================================================== */
+
 .desc {
-  margin: 0;
-  font-size: 14.5px;
+  margin: 15px 0 0;
+
   color: var(--paper-dim);
+
+  font-size: 14px;
+
+  line-height: 1.65;
+
   flex-grow: 1;
+
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+
+  line-clamp: 3;
+
+  overflow: hidden;
 }
+
+
+/* ================================================== */
+/* STACK */
+/* ================================================== */
+
+.stack {
+  margin-top: 20px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid var(--line);
+}
+
+
+.stack-label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: var(--signal);
+
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
 
 .tags {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 6px;
 }
 
+
+.tag {
+  display: inline-flex;
+
+  align-items: center;
+
+  min-height: 25px;
+
+  padding: 4px 8px;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  border: 1px solid var(--line);
+
+  border-radius: 5px;
+
+  color: var(--muted);
+
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 10px;
+
+  line-height: 1;
+
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background 180ms ease;
+}
+
+
+.card:hover .tag {
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+
+.card:hover .tag:first-child {
+  color: var(--paper-dim);
+}
+
+
+/* ================================================== */
+/* FOOTER */
+/* ================================================== */
+
 .card-foot {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
-  margin-top: 4px;
-  padding-top: 14px;
+
+  margin: 0 20px;
+
+  padding: 14px 0 16px;
+
   border-top: 1px solid var(--line);
 }
-.read-more {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12.5px;
+
+
+.foot-label {
   color: var(--signal);
+
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+}
+
+
+.foot-arrow {
+  color: var(--muted);
+
+  font-size: 15px;
+
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+
+.card:hover .foot-arrow {
+  color: var(--signal);
+
+  transform: translateX(4px);
+}
+
+
+/* ================================================== */
+/* RESPONSIVE */
+/* ================================================== */
+
+@media (max-width: 640px) {
+
+  .card-body {
+    padding: 18px 17px 18px;
+  }
+
+  .card-foot {
+    margin-inline: 17px;
+  }
+
+  .title-row h2 {
+    font-size: 19px;
+  }
+
+  .desc {
+    font-size: 13.5px;
+  }
+
+  .project-index {
+    display: none;
+  }
+}
+
+
+/* ================================================== */
+/* REDUCED MOTION */
+/* ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .card,
+  .card-img,
+  .open-icon,
+  .tag,
+  .foot-arrow {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card:hover .card-img {
+    transform: none;
+  }
 }

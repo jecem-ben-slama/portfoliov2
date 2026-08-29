@@ -1,0 +1,21 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background matching site theme -->
+  <rect width="64" height="64" rx="14" fill="#0B0E17"/>
+  <rect width="64" height="64" rx="14" fill="none" stroke="#1E2333" stroke-width="1"/>
+
+  <!-- Code bracket mark in indigo accent -->
+  <path d="M25 18 L13 32 L25 46" fill="none" stroke="url(#accent)" stroke-width="5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M39 18 L51 32 L39 46" fill="none" stroke="url(#accent)" stroke-width="5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Center dot cursor accent -->
+  <rect x="30" y="29" width="4" height="7" rx="1" fill="#F1F5F9"/>
+</svg>

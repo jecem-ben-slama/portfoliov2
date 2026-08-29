@@ -12,6 +12,7 @@ import {
   TranslationService,
   Language,
 } from '../../../core/i18n/translation.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-detail',
@@ -23,9 +24,11 @@ import {
 export class ProjectDetailComponent {
   private route = inject(ActivatedRoute);
   private projectsService = inject(ProjectsService);
+  private sanitizer = inject(DomSanitizer);
   protected i18n = inject(TranslationService);
 
   project$: Observable<Project | undefined>;
+  isDemoActive = false;
 
   constructor() {
     this.project$ = this.route.paramMap.pipe(
@@ -36,13 +39,19 @@ export class ProjectDetailComponent {
     );
   }
 
-  // Helper for single localized strings
+  toggleDemo(): void {
+    this.isDemoActive = !this.isDemoActive;
+  }
+
+  getSanitizerUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
   getLocalized(field: LocalizedString): string {
     const lang = this.i18n.language() as Language;
     return field[lang] || field.en;
   }
 
-  // Helper for arrays of localized strings (how, tradeoffs, learned)
   getLocalizedArray(field: LocalizedStringArray | undefined): string[] {
     if (!field) return [];
     const lang = this.i18n.language() as Language;

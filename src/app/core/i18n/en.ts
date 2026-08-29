@@ -39,6 +39,9 @@ export const en = {
     // Add these project detail labels:
     allProjects: 'All projects',
     liveDemo: 'Live demo',
+    downloadApk: "Download APK",
+  launchDemo: "Launch Emulator",
+  closeDemo: "Close Emulator",
     github: 'GitHub',
     stack: 'Stack',
     problem: 'The problem',

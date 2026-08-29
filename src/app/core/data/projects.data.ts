@@ -1,7 +1,7 @@
 import { Project } from '../models/project.model';
 
-
 export const PROJECTS: Project[] = [
+  //* ApplyFlow
   {
     slug: 'applyflow',
     name: 'ApplyFlow',
@@ -126,111 +126,154 @@ export const PROJECTS: Project[] = [
       ],
     },
     learned: {
-      en: ["githuib branching","docker","CICD workflow"],
-      fr: [],
+      en: [
+        'GitHub branching strategies',
+        'Docker containerization',
+        'CI/CD workflow automation',
+      ],
+      fr: [
+        'Stratégies de branches GitHub',
+        'Conteneurisation Docker',
+        'Automatisation des flux CI/CD',
+      ],
     },
   },
+  //* Remote Control
   {
     slug: 'remote-control',
-    name: 'Remote Control',
+    name: 'Hardware Interface Remote',
     tagline: {
-      en: 'A phone remote for a TV with zero documentation',
-      fr: 'Une télécommande sur téléphone pour une TV sans documentation',
+      en: 'A 72-hour reverse-engineering sprint to control an undocumented knockoff TV.',
+      fr: 'Un sprint de rétro-ingénierie de 72h pour contrôler une TV sans documentation.',
     },
     description: {
-      en: 'When my TV remote broke, I reverse-engineered the undocumented IR protocol from scratch and built a Flutter app to replace it.',
-      fr: "Quand la télécommande de ma télé est tombée en panne, j'ai rétro-ingénieré le protocole IR non documenté et créé une application Flutter pour la remplacer.",
+      en: 'When my TV remote broke, I had 3 days and zero budget to fix it. I reverse-engineered the undocumented IR protocol from scratch and built a low-level Flutter diagnostic utility to replace it.',
+      fr: "Quand ma télécommande est tombée en panne, j'avais 3 jours et aucun budget pour la réparer. J'ai rétro-ingénieré le protocole IR non documenté et créé un utilitaire de diagnostic Flutter bas niveau pour la remplacer.",
     },
     categories: ['mobile'],
     featured: true,
     status: 'shipped',
-    tags: ['Flutter', 'Dart', 'Android Consumer IR API', 'Provider'],
+    tags: [
+      'Flutter',
+      'Dart',
+      'Android Consumer IR API',
+      'Hardware I/O',
+      'Provider',
+    ],
     demoUrl: '',
-    githubUrl: '',
-    image: '',
+    releaseUrl:
+      'https://github.com/jecem-ben-slama/remote_control/releases/latest',
+    githubUrl: 'https://github.com/jecem-ben-slama/remote_control',
+    image: 'assets/remote-control/logo.jpg',
     screenshots: [
       {
-        src: '',
+        src: 'assets/remote-control/remote.png',
         caption: {
-          en: 'Remote UI in use',
-          fr: 'Interface de la télécommande en action',
+          en: 'System Matrix Register Map for command injection',
+          fr: "Matrice système pour l'injection de commandes",
         },
       },
       {
-        src: '',
+        src: 'assets/remote-control/mapper.png',
         caption: {
-          en: 'Internal command mapping tool',
-          fr: 'Outil interne de cartographie des commandes',
+          en: 'Auto-Command Sweeper and carrier frequency tuning',
+          fr: 'Outil de balayage automatique et réglage de fréquence',
+        },
+      },
+      {
+        src: 'assets/remote-control/pdf.png',
+        caption: {
+          en: 'Auto-Command Sweeper and carrier frequency tuning',
+          fr: 'Outil de balayage automatique et réglage de fréquence',
         },
       },
     ],
     hook: {
-      en: "My TV's remote broke and no replacement existed for that model, so I decided to control it from my phone instead. There was no documentation for the hardware anywhere — before I could write a line of app code, I had to reverse-engineer the infrared protocol from scratch.",
-      fr: "La télécommande de ma télévision étant cassée et aucun modèle de remplacement n'existant, j'ai décidé de la piloter depuis mon téléphone. En l'absence totale de documentation, j'ai dû rétro-ingénierer le protocole infrarouge à partir de zéro.",
+      en: "My TV remote broke, and as a student staring at an obscure knockoff SMASNUG TV with zero replacement parts on the market, buying a new one wasn't an option. With no documentation and a phone with an IR blaster, I spent 72 hours building a custom hardware diagnostic toolkit from scratch—complete with an address space brute-forcer, register map viewer, and a Flutter telemetry interface to inject raw NEC protocol packets.",
+      fr: "Ma télécommande s'est cassée. Étant étudiant avec une TV de marque obscure (SMASNUG) introuvable sur le marché, racheter n'était pas une option. Sans documentation, j'ai passé 72 heures à créer une boîte à outils de diagnostic matériel : force brute d'adresses, carte des registres et interface de télémétrie Flutter pour injecter des paquets NEC bruts.",
     },
     problem: {
-      en: "Universal remote apps assume the manufacturer's command set is known or discoverable. Mine wasn't. No datasheet, no protocol reference — just a TV with an IR receiver and a phone with an IR blaster. Getting from nothing to a working remote meant treating the TV itself as the only source of truth.",
-      fr: "Les applications de télécommande universelle supposent que les commandes sont connues. Ce n'était pas le cas ici. Aucune fiche technique, aucune référence — juste une TV et un téléphone émetteur IR.",
+      en: "Universal remote apps assume the manufacturer's command set is known or discoverable. A cheap knockoff TV doesn't exist in those databases. No datasheet, no protocol reference — just a TV with an IR receiver and a phone with an IR blaster. Getting from nothing to a working remote meant treating the TV itself as the only source of truth.",
+      fr: "Les applications universelles supposent que les commandes du fabricant sont connues. Une TV bas de gamme n'existe pas dans ces bases. Aucune fiche technique — juste une TV et un téléphone émetteur IR. Il a fallu traiter la TV elle-même comme unique source de vérité.",
     },
     how: {
       en: [
+        "Domain Acquisition: Before writing a single line of code, I spent hours researching how physical IR remotes actually work—diving into carrier frequencies, pulse-distance modulation, and raw hardware signaling to understand exactly what the TV's receiver was expecting.",
         "Started from the TV's regulatory and licensing documentation to narrow down the receiver hardware, pointing to the NEC IR protocol.",
-        'NEC packets need a valid 8-bit system address before the receiver parses anything. Brute-forced that address space (0x00–0xFF) against the physical TV until it responded — it answered at 0x01.',
-        'Built a small internal tool to fire hex commands at the TV and label what each one did — capture, label, verify, repeat.',
-        "Compiled the mapped command set into a fixed configuration registry, wired into a Flutter frontend via Android's native Consumer IR API.",
+        'Compiled 8 pages of potential carrier frequencies to test. Luckily, the receiver responded to a frequency on page two, saving hours of blind testing and validating the native Android I/O bridge.',
+        'NEC packets need a valid 8-bit system address. Brute-forced that address space (0x00–0xFF) against the physical TV until it answered at 0x01.',
+        'Built a custom internal diagnostic UI to fire hex commands at the TV and label what each one did — capture, label, verify, repeat.',
+        "Wired the mapped command set into a raw, utilitarian Flutter frontend via Android's native Consumer IR API.",
       ],
       fr: [
-        'Analyse de la documentation réglementaire de la TV pour identifier le protocole NEC.',
-        "Force brute de l'espace d'adressage 8 bits (0x00–0xFF) jusqu'à obtenir une réponse de la TV (réponse à 0x01).",
-        "Création d'un outil interne pour envoyer des commandes hexadécimales et labelliser leur effet.",
-        "Compilation du jeu de commandes dans un registre de configuration relié à Flutter via l'API Consumer IR d'Android.",
+        "Acquisition de domaine : Avant de coder, j'ai étudié le fonctionnement physique des télécommandes IR (fréquences porteuses, modulation de distance d'impulsion, signalisation matérielle) pour comprendre les attentes du récepteur.",
+        'Analyse de la documentation réglementaire pour identifier le matériel, pointant vers le protocole IR NEC.',
+        "Compilation de 8 pages de fréquences porteuses à tester. Coup de chance : la TV a répondu à une fréquence de la deuxième page, validant immédiatement l'approche.",
+        "Force brute de l'espace d'adressage 8 bits (0x00–0xFF) jusqu'à obtenir une réponse de la TV à l'adresse 0x01.",
+        "Création d'une interface de diagnostic interne pour envoyer des commandes hexadécimales et labelliser leur effet.",
+        "Intégration des commandes cartographiées dans une interface Flutter utilitaire via l'API Consumer IR d'Android.",
       ],
     },
     proud: [
       {
         title: {
-          en: 'Getting a real answer with no reference material.',
-          fr: 'Obtenir une réponse sans matériel de référence.',
+          en: 'Executing under strict constraints.',
+          fr: 'Exécution sous contraintes strictes.',
         },
         detail: {
-          en: 'No protocol doc to check work against — every step was validated against the physical TV itself, including a real brute-force search for the system address.',
-          fr: 'Aucune documentation de protocole disponible — chaque étape a été validée directement sur la TV physique.',
+          en: 'Turned a dead hardware blocker into a fully functional, custom-engineered solution in under 72 hours using zero budget and zero reference material.',
+          fr: "Transformation d'un blocage matériel en une solution fonctionnelle en moins de 72 heures, sans budget ni matériel de référence.",
         },
       },
       {
         title: {
-          en: 'Building my own tooling instead of guessing manually.',
-          fr: 'Créer ses propres outils au lieu de deviner manuellement.',
+          en: 'Building diagnostic tooling instead of guessing.',
+          fr: 'Créer des outils de diagnostic au lieu de deviner.',
         },
         detail: {
-          en: 'A small diagnostic UI for the mapping phase turned tedious manual hex-testing into a fast, repeatable loop.',
-          fr: 'Une interface de diagnostic dédiée a transformé les tests hexadécimaux en une boucle rapide et reproductible.',
+          en: 'Instead of manually testing hex codes one by one in code, I built a dark-mode diagnostic UI that turned tedious hex-testing into a fast, repeatable loop.',
+          fr: "Au lieu de tester manuellement le code hexadécimal, j'ai créé une interface de diagnostic qui a rendu les tests rapides et reproductibles.",
         },
       },
       {
         title: {
-          en: 'Keeping the app clean once the hard part was done.',
-          fr: 'Garder l’application propre après la phase complexe.',
+          en: 'Accepting absolute hardware limits.',
+          fr: 'Accepter les limites matérielles absolues.',
         },
         detail: {
-          en: "Hardware discovery was messy by nature; the shipped app isn't. State management and hardware I/O stay cleanly separated.",
-          fr: "La phase de découverte matérielle était complexe ; l'application finale reste propre et structurée.",
+          en: 'The discrete "Power On" command remains unsolvable because the cheap TV cuts all power to the IR receiver during standby. Diagnosing and accepting that physical wall was a massive engineering lesson.',
+          fr: 'La commande "Allumer" reste insoluble car la TV coupe l\'alimentation du récepteur IR en veille. Diagnostiquer et accepter ce mur physique fut une grande leçon.',
         },
       },
     ],
     tradeoffs: {
       en: [
-        "Only works with the exact TV it was reverse-engineered against — it isn't a universal remote, and the write-up says so directly rather than overselling it.",
-        'Requires a phone with a built-in IR blaster, which rules out most modern phones.',
-        'The discovery tooling (address brute-forcing, frequency sweeping) is internal-only right now. Next step: expose it as a guided in-app workflow so someone else with unsupported hardware can run the same process themselves.',
+        'Prioritized low-level protocol mapping and hardware reliability over polished UI design — built as a 3-day utility prototype, not a commercial visual showcase.',
+        'Only works with the exact SMASNUG TV model reverse-engineered during the sprint.',
+        'Requires an Android device with a built-in physical IR blaster.',
+        "The 'Wake/Power On' function does not work due to the TV's hardware-level standby power restrictions.",
       ],
       fr: [
-        'Fonctionne uniquement avec le modèle de TV spécifique rétro-ingénieré.',
-        "Nécessite un téléphone équipé d'un émetteur infrarouge intégré.",
-        "Les outils de découverte sont actuellement internes, avec pour projet de les exposer dans l'application.",
+        "Priorité donnée à la cartographie bas niveau plutôt qu'au design — construit comme un prototype utilitaire de 3 jours.",
+        'Fonctionne uniquement avec le modèle SMASNUG spécifique rétro-ingénieré.',
+        'Nécessite un appareil Android avec un émetteur infrarouge physique intégré.',
+        "La fonction 'Allumer' ne fonctionne pas en raison des restrictions d'alimentation de la TV en mode veille.",
+      ],
+    },
+    learned: {
+      en: [
+        'Low-level Android Consumer IR API integration',
+        'Hardware protocol reverse engineering',
+        'Rapid prototyping under strict time constraints',
+      ],
+      fr: [
+        'Intégration de l’API Consumer IR bas niveau d’Android',
+        'Rétro-ingénierie de protocoles matériels',
+        'Prototypage rapide sous contraintes temporelles strictes',
       ],
     },
   },
+  //* AI Partner
   {
     slug: 'ai-partner',
     name: 'AI Partner',
@@ -329,6 +372,18 @@ export const PROJECTS: Project[] = [
         "L'intérêt principal réside dans l'apprentissage de la structuration d'une application Flutter complexe.",
       ],
     },
+    learned: {
+      en: [
+        'Clean Architecture principles in Flutter',
+        'BLoC/Cubit state management pattern',
+        'Google ML Kit local model integration',
+      ],
+      fr: [
+        'Principes de la Clean Architecture dans Flutter',
+        'Modèle de gestion d’état BLoC/Cubit',
+        'Intégration de modèles locaux Google ML Kit',
+      ],
+    },
   },
 
   // ---------------------------------------------------------------------
@@ -377,6 +432,10 @@ export const PROJECTS: Project[] = [
       en: ['TODO'],
       fr: ['À FAIRE'],
     },
+    learned: {
+      en: ['TODO'],
+      fr: ['À FAIRE'],
+    },
   },
   {
     slug: 'flutter-app-one',
@@ -421,6 +480,10 @@ export const PROJECTS: Project[] = [
       en: [],
       fr: [],
     },
+    learned: {
+      en: [],
+      fr: [],
+    },
   },
   {
     slug: 'flutter-app-two',
@@ -462,6 +525,10 @@ export const PROJECTS: Project[] = [
       },
     ],
     tradeoffs: {
+      en: [],
+      fr: [],
+    },
+    learned: {
       en: [],
       fr: [],
     },

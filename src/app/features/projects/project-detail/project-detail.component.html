@@ -3,7 +3,7 @@
     <a routerLink="/" fragment="projects" class="back-link">&larr; {{ i18n.t('projects.allProjects') }}</a>
 
     <div class="split">
-      <!-- 30% sticky sidebar (stacks to bottom on mobile) -->
+      <!-- 30% sticky sidebar -->
       <aside class="sidebar">
         <span class="status" [class.active]="project.status === 'shipped'"
           [class.progress]="project.status === 'in-progress'" [class.draft]="project.status === 'draft'">
@@ -11,9 +11,22 @@
         </span>
 
         <div class="links">
+          <!-- Standard Live Demo Link (Fallback) -->
           <a *ngIf="project.demoUrl" [href]="project.demoUrl" target="_blank" rel="noopener" class="btn primary">
             {{ i18n.t('projects.liveDemo') }}
           </a>
+
+          <!-- Direct APK/Release Download Link -->
+          <a *ngIf="project.releaseUrl" [href]="project.releaseUrl" target="_blank" rel="noopener" class="btn primary">
+            {{ i18n.t('projects.downloadApk') }}
+          </a>
+
+          <!-- Interactive Appetize Iframe Toggle Button -->
+          <button *ngIf="project.appetizeUrl" (click)="toggleDemo()" class="btn secondary">
+            {{ isDemoActive ? i18n.t('projects.closeDemo') : i18n.t('projects.launchDemo') }}
+          </button>
+
+          <!-- GitHub Repo Link -->
           <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener" class="btn">
             {{ i18n.t('projects.github') }}
           </a>
@@ -24,7 +37,7 @@
           <span class="tag" *ngFor="let t of project.tags">{{ t }}</span>
         </div>
 
-        <!-- Process & practices (hidden if empty) -->
+        <!-- Process & practices -->
         <section class="block sidebar-block" *ngIf="getLocalizedArray(project.learned).length > 0">
           <h3 class="side-heading">{{ i18n.t('projects.processPractices') }}</h3>
           <ul class="sidebar-list">
@@ -37,6 +50,12 @@
       <main class="main">
         <h1>{{ project.name }}</h1>
         <p class="tagline">{{ getLocalized(project.tagline) }}</p>
+
+        <!-- Interactive Emulator Section (Lazy-loaded) -->
+        <div class="emulator-wrapper" *ngIf="project.appetizeUrl && isDemoActive">
+          <iframe [src]="getSanitizerUrl(project.appetizeUrl)" width="375" height="800" frameborder="0" scrolling="no">
+          </iframe>
+        </div>
 
         <div class="gallery" *ngIf="project.screenshots?.length">
           <figure *ngFor="let s of project.screenshots">

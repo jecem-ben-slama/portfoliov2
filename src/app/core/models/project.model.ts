@@ -35,6 +35,8 @@ export interface Project {
   status: ProjectStatus;
   tags: string[];
   demoUrl?: string;
+  releaseUrl?: string;
+  appetizeUrl?:string,
   githubUrl?: string;
   image?: string;
   screenshots?: ProjectScreenshot[];

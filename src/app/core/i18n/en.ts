@@ -51,6 +51,7 @@ export const en = {
     processPractices: 'Process & practices',
     notFound: 'Project not found.',
     backHome: 'Back home',
+    screenshots: 'Product Preview',
   },
   experience: {
     eyebrow: 'Experience',

@@ -1,141 +1,262 @@
 <ng-container *ngIf="project$ | async as project; else notFound">
+
   <div class="detail-page">
-    <a routerLink="/" fragment="projects" class="back-link">&larr; {{ i18n.t('projects.allProjects') }}</a>
 
+    
     <div class="split">
-      <aside class="sidebar">
-        <div class="sidebar-card status-card">
-          <span class="status" [class.active]="project.status === 'shipped'"
-            [class.progress]="project.status === 'in-progress'" [class.draft]="project.status === 'draft'">
-            <span class="status-dot"></span>{{ project.status }}
-          </span>
-        </div>
 
-        <div class="sidebar-card stack-card" *ngIf="project.tags.length">
-          <h3 class="side-heading">{{ i18n.t('projects.stack') }}</h3>
-          <div class="tags">
-            <span class="tag" *ngFor="let t of project.tags">{{ t }}</span>
+      <!-- Left sticky column -->
+      <aside class="left-column">
+
+        <!-- Back -->
+        <a routerLink="/" fragment="projects" class="back-link">
+          &larr; {{ i18n.t('projects.allProjects') }}
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+
+          <div class="sidebar-card status-card">
+            <span class="status" [class.active]="project.status === 'shipped'"
+              [class.progress]="project.status === 'in-progress'" [class.draft]="project.status === 'draft'">
+              <span class="status-dot"></span>{{ project.status }}
+            </span>
           </div>
-        </div>
 
-        <div class="sidebar-card links-card"
-          *ngIf="project.demoUrl || project.releaseUrl || project.appetizeUrl || project.githubUrl">
-          <h3 class="side-heading">{{ i18n.t('projects.access') }}</h3>
-          <div class="links">
-            <a *ngIf="project.demoUrl" [href]="project.demoUrl" target="_blank" rel="noopener" class="btn primary">
-              {{ i18n.t('projects.liveDemo') }} &nearr;
-            </a>
-            <a *ngIf="project.releaseUrl" [href]="project.releaseUrl" target="_blank" rel="noopener"
-              class="btn primary">
-              {{ i18n.t('projects.downloadApk') }} &darr;
-            </a>
-            <button *ngIf="project.appetizeUrl" (click)="toggleDemo()" class="btn secondary">
-              {{ isDemoActive ? i18n.t('projects.closeDemo') : i18n.t('projects.launchDemo') }}
-            </button>
-            <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener" class="btn">
-              {{ i18n.t('projects.github') }} &nearr;
-            </a>
+          <div class="sidebar-card stack-card" *ngIf="project.tags.length">
+            <h3 class="side-heading">{{ i18n.t('projects.stack') }}</h3>
+
+            <div class="tags">
+              <span class="tag" *ngFor="let t of project.tags">
+                {{ t }}
+              </span>
+            </div>
           </div>
-        </div>
 
-        <!-- Desktop-only: Process & Practices in Sidebar -->
-        <div class="sidebar-card practices-card desktop-practices"
-          *ngIf="getLocalizedArray(project.learned).length > 0">
-          <h3 class="side-heading">{{ i18n.t('projects.processPractices') }}</h3>
-          <ul class="sidebar-list">
-            <li *ngFor="let l of getLocalizedArray(project.learned)">{{ l }}</li>
-          </ul>
+          <div class="sidebar-card links-card"
+            *ngIf="project.demoUrl || project.releaseUrl || project.appetizeUrl || project.githubUrl">
+
+            <h3 class="side-heading">{{ i18n.t('projects.access') }}</h3>
+
+            <div class="links">
+
+              <a *ngIf="project.demoUrl" [href]="project.demoUrl" target="_blank" rel="noopener" class="btn primary">
+                {{ i18n.t('projects.liveDemo') }} &nearr;
+              </a>
+
+              <a *ngIf="project.releaseUrl" [href]="project.releaseUrl" target="_blank" rel="noopener"
+                class="btn primary">
+                {{ i18n.t('projects.downloadApk') }} &darr;
+              </a>
+
+              <button *ngIf="project.appetizeUrl" (click)="toggleDemo()" class="btn secondary">
+                {{ isDemoActive
+                ? i18n.t('projects.closeDemo')
+                : i18n.t('projects.launchDemo') }}
+              </button>
+
+              <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener" class="btn">
+                {{ i18n.t('projects.github') }} &nearr;
+              </a>
+
+            </div>
+          </div>
+
+          <div class="sidebar-card practices-card desktop-practices"
+            *ngIf="getLocalizedArray(project.learned).length > 0">
+
+            <h3 class="side-heading">
+              {{ i18n.t('projects.processPractices') }}
+            </h3>
+
+            <ul class="sidebar-list">
+              <li *ngFor="let l of getLocalizedArray(project.learned)">
+                {{ l }}
+              </li>
+            </ul>
+
+          </div>
+
         </div>
       </aside>
 
+      <!-- Main -->
       <main class="main">
+
         <header class="main-header">
           <h1>{{ project.name }}</h1>
-          <p class="tagline">{{ getLocalized(project.tagline) }}</p>
+          <p class="tagline">
+            {{ getLocalized(project.tagline) }}
+          </p>
         </header>
 
         <div class="hook-card" *ngIf="project.hook">
-          <p class="hook">{{ getLocalized(project.hook) }}</p>
+          <p class="hook">
+            {{ getLocalized(project.hook) }}
+          </p>
         </div>
 
         <div class="emulator-wrapper" *ngIf="project.appetizeUrl && isDemoActive">
+
           <div class="emulator-container">
             <iframe [src]="getSanitizerUrl(project.appetizeUrl)" width="375" height="800" frameborder="0"
               scrolling="no">
             </iframe>
           </div>
+
         </div>
 
         <div class="content-sections">
+
           <section class="block" *ngIf="project.problem">
             <h3>{{ i18n.t('projects.problem') }}</h3>
-            <p>{{ getLocalized(project.problem) }}</p>
+
+            <p>
+              {{ getLocalized(project.problem) }}
+            </p>
           </section>
 
           <section class="block" *ngIf="getLocalizedArray(project.how).length > 0">
+
             <h3>{{ i18n.t('projects.howItWorks') }}</h3>
+
             <ul class="styled-list">
-              <li *ngFor="let step of getLocalizedArray(project.how)"><span>{{ step }}</span></li>
+              <li *ngFor="let step of getLocalizedArray(project.how)">
+                <span>{{ step }}</span>
+              </li>
             </ul>
+
           </section>
 
           <section class="block" *ngIf="project.proud.length">
+
             <h3>{{ i18n.t('projects.proudOf') }}</h3>
+
             <ul class="proud-list">
+
               <li *ngFor="let p of project.proud">
-                <div class="proud-title"><b>{{ getLocalized(p.title) }}</b></div>
-                <div class="proud-detail">{{ getLocalized(p.detail) }}</div>
+
+                <div class="proud-title">
+                  <b>{{ getLocalized(p.title) }}</b>
+                </div>
+
+                <div class="proud-detail">
+                  {{ getLocalized(p.detail) }}
+                </div>
+
               </li>
+
             </ul>
+
           </section>
 
           <section class="block" *ngIf="getLocalizedArray(project.tradeoffs).length > 0">
+
             <h3>{{ i18n.t('projects.tradeoffs') }}</h3>
+
             <ul class="styled-list tradeoffs-list">
-              <li *ngFor="let t of getLocalizedArray(project.tradeoffs)"><span>{{ t }}</span></li>
+
+              <li *ngFor="let t of getLocalizedArray(project.tradeoffs)">
+                <span>{{ t }}</span>
+              </li>
+
             </ul>
+
           </section>
+
         </div>
 
-        <!-- Mobile-only: Process & Practices at the bottom just before screenshots -->
+        <!-- Mobile-only practices -->
         <div class="sidebar-card practices-card mobile-practices" *ngIf="getLocalizedArray(project.learned).length > 0">
-          <h3 class="side-heading">{{ i18n.t('projects.processPractices') }}</h3>
+
+          <h3 class="side-heading">
+            {{ i18n.t('projects.processPractices') }}
+          </h3>
+
           <ul class="sidebar-list">
-            <li *ngFor="let l of getLocalizedArray(project.learned)">{{ l }}</li>
+            <li *ngFor="let l of getLocalizedArray(project.learned)">
+              {{ l }}
+            </li>
           </ul>
+
         </div>
 
+        <!-- Gallery -->
         <section class="gallery-section" *ngIf="project.screenshots?.length">
-          <h3 class="gallery-heading">{{ i18n.t('projects.screenshots') }}</h3>
+
+          <h3 class="gallery-heading">
+            {{ i18n.t('projects.screenshots') }}
+          </h3>
+
           <div class="gallery">
+
             <figure *ngFor="let s of project.screenshots">
+
               <div class="img-container" (click)="s.src && openLightbox(s.src, getLocalized(s.caption))">
+
                 <img *ngIf="s.src; else shotPlaceholder" [src]="s.src" [alt]="getLocalized(s.caption)" />
+
                 <ng-template #shotPlaceholder>
-                  <div class="img-placeholder">{{ getLocalized(s.caption) }} (set src)</div>
+                  <div class="img-placeholder">
+                    {{ getLocalized(s.caption) }} (set src)
+                  </div>
                 </ng-template>
+
               </div>
-              <figcaption>{{ getLocalized(s.caption) }}</figcaption>
+
+              <figcaption>
+                {{ getLocalized(s.caption) }}
+              </figcaption>
+
             </figure>
+
           </div>
+
         </section>
+
       </main>
     </div>
+    
+
   </div>
 </ng-container>
 
-<!-- Lightbox overlay -->
+<!-- Lightbox -->
+
 <div class="lightbox" *ngIf="lightboxImage" (click)="closeLightbox()">
-  <button class="lightbox-close" (click)="closeLightbox(); $event.stopPropagation()">&times;</button>
+
+  <button class="lightbox-close" (click)="closeLightbox(); $event.stopPropagation()">
+    × </button>
+
   <figure>
+
+    
     <img [src]="lightboxImage" [alt]="lightboxCaption" (click)="$event.stopPropagation()" />
-    <figcaption *ngIf="lightboxCaption">{{ lightboxCaption }}</figcaption>
+
+    <figcaption *ngIf="lightboxCaption">
+      {{ lightboxCaption }}
+    </figcaption>
+    
+
   </figure>
 </div>
 
+<!-- Not found -->
+
 <ng-template #notFound>
+
   <div class="not-found">
-    <p>{{ i18n.t('projects.notFound') }}</p>
-    <a routerLink="/" class="btn">&larr; {{ i18n.t('projects.backHome') }}</a>
+
+    
+    <p>
+      {{ i18n.t('projects.notFound') }}
+    </p>
+
+    <a routerLink="/" class="btn">
+      &larr; {{ i18n.t('projects.backHome') }}
+    </a>
+    
+
   </div>
+
 </ng-template>

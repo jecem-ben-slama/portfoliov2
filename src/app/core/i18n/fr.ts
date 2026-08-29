@@ -51,6 +51,7 @@ export const fr = {
     processPractices: 'Processus et pratiques',
     notFound: 'Projet introuvable.',
     backHome: "Retour à l'accueil",
+    screenshots: 'Aperçu du produit',
   },
   experience: {
     eyebrow: 'Expérience',

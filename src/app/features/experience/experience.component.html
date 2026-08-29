@@ -1,58 +1,95 @@
-<section class="section" id="experience">
+<section class="section experience-section" id="experience">
 
   <div class="section-head">
-
     <p class="eyebrow">
       {{ i18n.t('experience.eyebrow') }}
     </p>
-
-  
   </div>
 
-  <div class="timeline" *ngIf="experience.length; else empty">
+  <div class="experience-list" *ngIf="experience.length; else empty">
 
-    <div class="entry" *ngFor="let e of experience">
+    
+    <article class="experience-card" *ngFor="let e of experience; let i = index">
 
-      <div class="entry-head">
+      <!-- Timeline -->
+      <div class="timeline-rail" aria-hidden="true">
+        <span class="timeline-dot"></span>
 
-        <h3>
-          {{ i18n.t(e.role) }}
-          ·
-          {{ i18n.t(e.organization) }}
-        </h3>
+        <span class="timeline-line" *ngIf="i < experience.length - 1"></span>
+      </div>
 
-        <span class="date">
-          {{ i18n.t(e.dateRange) }}
-        </span>
+      <!-- Content -->
+      <div class="experience-content">
+
+        <!-- Header -->
+        <div class="experience-header">
+
+          <div class="experience-heading">
+
+            <span class="experience-index">
+              {{ (i + 1).toString().padStart(2, '0') }}
+            </span>
+
+            <div class="heading-main">
+
+              <h3>
+                {{ i18n.t(e.role) }}
+              </h3>
+
+              <p class="organization">
+                {{ i18n.t(e.organization) }}
+              </p>
+
+            </div>
+
+          </div>
+
+          <span class="date">
+            {{ i18n.t(e.dateRange) }}
+          </span>
+
+        </div>
+
+        <!-- Highlights -->
+        <div class="highlights" *ngIf="e.bullets.length">
+
+          <ul>
+            <li *ngFor="let b of e.bullets">
+
+              <span class="bullet-icon" aria-hidden="true">
+                →
+              </span>
+
+              <span class="bullet-text">
+                {{ i18n.t(b) }}
+              </span>
+
+            </li>
+          </ul>
+
+        </div>
+
+        <!-- Technologies -->
+        <div class="technologies" *ngIf="e.tags?.length">
+
+          <div class="tags">
+            <span class="tag" *ngFor="let t of e.tags">
+              {{ t }}
+            </span>
+          </div>
+
+        </div>
 
       </div>
 
-      <ul>
-
-        <li *ngFor="let b of e.bullets">
-          {{ i18n.t(b) }}
-        </li>
-
-      </ul>
-
-      <div class="tags" *ngIf="e.tags?.length">
-
-        <span class="tag" *ngFor="let t of e.tags">
-          {{ t }}
-        </span>
-
-      </div>
-
-    </div>
+    </article>
+    
 
   </div>
 
   <ng-template #empty>
-
     <p class="empty-note">
-      {{ i18n.t('experience.empty') }}
-    </p>
-
+      {{ i18n.t('experience.empty') }} </p>
   </ng-template>
 
 </section>

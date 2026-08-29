@@ -1,50 +1,82 @@
-<section class="section" id="education">
+<section class="section education-section" id="education">
 
   <div class="section-head">
-
     <p class="eyebrow">
       {{ i18n.t('education.eyebrow') }}
     </p>
-
- 
-
   </div>
 
-  <div class="entries" *ngIf="education.length; else empty">
+  <div class="education-list" *ngIf="education.length; else empty">
 
-    <div class="entry" *ngFor="let e of education">
+    
+    <article class="education-card" *ngFor="let e of education; let i = index">
 
-      <div class="entry-head">
+      <!-- Timeline -->
+      <div class="timeline-rail" aria-hidden="true">
+        <span class="timeline-dot"></span>
 
-        <h3>
-          {{ i18n.t(e.degree) }}
-          ·
-          {{ i18n.t(e.institution) }}
-        </h3>
+        <span class="timeline-line" *ngIf="i < education.length - 1"></span>
+      </div>
 
-        <span class="date">
-          {{ i18n.t(e.dateRange) }}
-        </span>
+      <!-- Content -->
+      <div class="education-content">
+
+        <!-- Header -->
+        <div class="education-header">
+
+          <div class="education-heading">
+
+            <span class="education-index">
+              {{ (i + 1).toString().padStart(2, '0') }}
+            </span>
+
+            <div class="heading-main">
+
+              <h3>
+                {{ i18n.t(e.degree) }}
+              </h3>
+
+              <p class="institution">
+                {{ i18n.t(e.institution) }}
+              </p>
+
+            </div>
+
+          </div>
+
+          <span class="date">
+            {{ i18n.t(e.dateRange) }}
+          </span>
+
+        </div>
+
+        <!-- Coursework -->
+        <div class="coursework" *ngIf="e.coursework?.length">
+
+          <div class="tags">
+
+            <span class="tag" *ngFor="let c of e.coursework">
+              {{ i18n.t(c) }}
+            </span>
+
+          </div>
+
+        </div>
 
       </div>
 
-      <div class="tags" *ngIf="e.coursework?.length">
-
-        <span class="tag" *ngFor="let c of e.coursework">
-          {{ i18n.t(c) }}
-        </span>
-
-      </div>
-
-    </div>
+    </article>
+    
 
   </div>
 
   <ng-template #empty>
 
+    
     <p class="empty-note">
       {{ i18n.t('education.empty') }}
     </p>
+    
 
   </ng-template>
 

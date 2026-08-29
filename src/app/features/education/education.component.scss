@@ -1,40 +1,353 @@
-.entries {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.education-section {
+position: relative;
 }
 
-.entry-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 10px;
+/* =========================================================
+SECTION HEADER
+========================================================= */
+
+.section-head {
+margin-bottom: 2rem;
 }
-.entry-head h3 {
-  font-size: 17px;
+
+.eyebrow {
+margin: 0;
+
+font-family: "JetBrains Mono", "Fira Code", monospace;
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+
+color: #8b7cff;
 }
+
+/* =========================================================
+EDUCATION LIST
+========================================================= */
+
+.education-list {
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+
+/* =========================================================
+EDUCATION ITEM
+========================================================= */
+
+.education-card {
+position: relative;
+
+display: grid;
+grid-template-columns: 30px minmax(0, 1fr);
+
+min-width: 0;
+}
+
+/* =========================================================
+TIMELINE
+========================================================= */
+
+.timeline-rail {
+position: relative;
+
+display: flex;
+justify-content: center;
+
+width: 30px;
+}
+
+.timeline-dot {
+position: relative;
+z-index: 2;
+
+width: 7px;
+height: 7px;
+
+margin-top: 1.45rem;
+
+border-radius: 50%;
+
+background: #8b7cff;
+
+box-shadow:
+0 0 0 4px rgba(139, 124, 255, 0.07);
+}
+
+.timeline-line {
+position: absolute;
+
+top: 1.8rem;
+bottom: 0;
+
+width: 1px;
+
+background: linear-gradient(
+to bottom,
+rgba(139, 124, 255, 0.25),
+rgba(139, 124, 255, 0.04)
+);
+}
+
+/* =========================================================
+CARD CONTENT
+========================================================= */
+
+.education-content {
+position: relative;
+
+margin-bottom: 0.75rem;
+padding: 1.2rem 1.35rem 1.25rem;
+
+border: 1px solid #232b39;
+border-radius: 10px;
+
+background: #111621;
+
+transition:
+border-color 160ms ease,
+background 160ms ease,
+transform 160ms ease,
+box-shadow 160ms ease;
+}
+
+.education-content::before {
+content: "";
+
+position: absolute;
+
+top: 10px;
+bottom: 10px;
+left: -1px;
+
+width: 2px;
+
+border-radius: 2px;
+
+background: #8b7cff;
+
+opacity: 0.7;
+}
+
+.education-card:hover .education-content {
+border-color: #30394a;
+
+background: #121824;
+
+transform: translateX(2px);
+
+box-shadow:
+0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+/* =========================================================
+HEADER
+========================================================= */
+
+.education-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+
+gap: 1.5rem;
+}
+
+.education-heading {
+display: flex;
+align-items: flex-start;
+
+gap: 0.7rem;
+
+min-width: 0;
+}
+
+.education-index {
+flex-shrink: 0;
+
+margin-top: 0.18rem;
+
+font-family: "JetBrains Mono", "Fira Code", monospace;
+font-size: 0.65rem;
+font-weight: 700;
+letter-spacing: 0.06em;
+
+color: #655bc1;
+}
+
+.heading-main {
+min-width: 0;
+}
+
+.education-heading h3 {
+margin: 0;
+
+font-size: 1.05rem;
+font-weight: 650;
+line-height: 1.3;
+letter-spacing: -0.015em;
+
+color: #f1f3f8;
+}
+
+.institution {
+margin: 0.25rem 0 0;
+
+font-family: "JetBrains Mono", "Fira Code", monospace;
+font-size: 0.72rem;
+line-height: 1.4;
+
+color: #8b7cff;
+}
+
 .date {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: var(--muted);
+flex-shrink: 0;
+
+padding: 0.3rem 0.55rem;
+
+border: 1px solid #293141;
+border-radius: 5px;
+
+background: #151b27;
+
+font-family: "JetBrains Mono", "Fira Code", monospace;
+font-size: 0.65rem;
+line-height: 1.2;
+
+color: #8993a7;
+}
+
+/* =========================================================
+COURSEWORK
+========================================================= */
+
+.coursework {
+margin-top: 0.9rem;
 }
 
 .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+display: flex;
+flex-wrap: wrap;
+
+gap: 0.35rem;
 }
 
-.empty-note {
-  color: var(--muted);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  border: 1px dashed var(--line);
-  border-radius: 8px;
-  padding: 20px;
+.tag {
+display: inline-flex;
+align-items: center;
+
+min-height: 24px;
+
+padding: 0.25rem 0.5rem;
+
+border: 1px solid #293141;
+border-radius: 5px;
+
+background: #161d29;
+
+font-family: "JetBrains Mono", "Fira Code", monospace;
+font-size: 0.64rem;
+line-height: 1;
+
+color: #929caf;
+
+transition:
+border-color 140ms ease,
+background 140ms ease,
+color 140ms ease;
 }
-.empty-note code {
-  color: var(--signal);
+
+.tag:hover {
+border-color: #3a4355;
+background: #1a2230;
+color: #c7cdd8;
+}
+
+/* =========================================================
+EMPTY STATE
+========================================================= */
+
+.empty-note {
+margin: 0;
+
+padding: 1.2rem;
+
+border: 1px solid #242c3b;
+border-radius: 10px;
+
+background: #111621;
+
+font-family: "JetBrains Mono", "Fira Code", monospace;
+font-size: 0.75rem;
+
+color: #8993a7;
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+.section-head {
+margin-bottom: 1.5rem;
+}
+
+.education-card {
+grid-template-columns: 20px minmax(0, 1fr);
+}
+
+.timeline-rail {
+width: 20px;
+}
+
+.timeline-dot {
+width: 6px;
+height: 6px;
+
+
+margin-top: 1.3rem;
+
+
+}
+
+.timeline-line {
+top: 1.65rem;
+}
+
+.education-content {
+margin-bottom: 0.6rem;
+padding: 1rem 1rem 1.05rem;
+}
+
+.education-header {
+flex-direction: column;
+gap: 0.55rem;
+}
+
+.education-heading {
+gap: 0.55rem;
+}
+
+.education-heading h3 {
+font-size: 0.95rem;
+}
+
+.institution {
+font-size: 0.68rem;
+}
+
+.date {
+align-self: flex-start;
+}
+
+.coursework {
+margin-top: 0.75rem;
+}
+
+.tag {
+min-height: 22px;
+padding: 0.22rem 0.45rem;
+font-size: 0.6rem;
+}
 }

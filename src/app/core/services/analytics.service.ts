@@ -39,8 +39,8 @@ export class AnalyticsService {
       });
     }
 
-    // Send to Umami
-    if (window.umami) {
+    // Send to Umami (SSR Safe)
+    if (typeof window !== 'undefined' && window.umami) {
       window.umami.track('page-view', { url });
     }
   }
@@ -51,8 +51,8 @@ export class AnalyticsService {
       gtag('event', eventName, eventParams);
     }
 
-    // Send to Umami
-    if (window.umami) {
+    // Send to Umami (SSR Safe)
+    if (typeof window !== 'undefined' && window.umami) {
       window.umami.track(eventName, eventParams);
     }
   }

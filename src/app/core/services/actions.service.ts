@@ -1,14 +1,20 @@
 import { Injectable, inject } from '@angular/core';
-import { TranslationService } from '../../core/i18n/translation.service';
+import { TranslationService } from '../i18n/translation.service';
+import { AnalyticsService } from './analytics.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ActionsService {
   private readonly i18n = inject(TranslationService);
+  private readonly analytics = inject(AnalyticsService);
   private readonly emailAddress = 'benslemajecem@gmail.com';
 
   sendEmail(): void {
+    this.analytics.trackEvent('click_contact_gmail', {
+      method: 'direct_mailto',
+    });
+
     const subject = encodeURIComponent(
       'Engineering Role / Collaboration Inquiry'
     );
@@ -25,13 +31,18 @@ export class ActionsService {
     }
   }
 
- 
   getResumePath(): string {
     return this.i18n.is('fr') ? 'assets/resume-fr.pdf' : 'assets/resume-en.pdf';
   }
 
+  trackResumeDownload(): void {
+    this.analytics.trackEvent('download_resume', {
+      lang: this.i18n.language(),
+    });
+  }
 
   copyEmail(): Promise<void> {
+    this.analytics.trackEvent('copy_email', { method: 'clipboard' });
     return navigator.clipboard.writeText(this.emailAddress);
   }
 

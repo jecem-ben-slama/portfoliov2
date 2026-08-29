@@ -1,11 +1,6 @@
 import { Project } from '../models/project.model';
 
-/**
- * This array is the single source of truth for every project card and
- * detail page on the site. Add a new project by pushing a new object here —
- * nothing else needs to change for it to show up in the grid, the filter
- * bar, and its own /projects/:slug route.
- */
+
 export const PROJECTS: Project[] = [
   {
     slug: 'applyflow',
@@ -131,7 +126,7 @@ export const PROJECTS: Project[] = [
       ],
     },
     learned: {
-      en: [],
+      en: ["githuib branching","docker","CICD workflow"],
       fr: [],
     },
   },

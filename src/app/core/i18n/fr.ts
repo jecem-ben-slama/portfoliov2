@@ -36,13 +36,13 @@ export const fr = {
     setImage: 'image : définir project.image',
     viewCode: 'Voir le code',
     readMore: 'Lire l’analyse détaillée',
-    // Add these project detail labels:
     allProjects: 'Tous les projets',
     liveDemo: 'Démo en direct',
     downloadApk: "Télécharger l'APK",
-  launchDemo: "Lancer l'émulateur",
-  closeDemo: "Fermer l'émulateur",
+    launchDemo: "Lancer l'émulateur",
+    closeDemo: "Fermer l'émulateur",
     github: 'GitHub',
+    access: 'Accès',
     stack: 'Technologies',
     problem: 'Le problème',
     howItWorks: 'Fonctionnement',
@@ -155,3 +155,4 @@ export const fr = {
     backend: 'Backend & API',
   },
 };
+

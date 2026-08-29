@@ -65,6 +65,9 @@
 html,
 body {
   height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; // guards against any element that slightly overflows 100vw
 }
 
 body {
@@ -176,6 +179,7 @@ a {
   max-width: var(--content-width);
   margin: 0 auto;
   padding: 72px 24px;
+  width: 100%; // ensures it never exceeds its centered max-width, no lopsided overflow
 }
 
 .section-head {

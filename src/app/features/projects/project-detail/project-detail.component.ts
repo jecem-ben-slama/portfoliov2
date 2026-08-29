@@ -57,4 +57,15 @@ export class ProjectDetailComponent {
     const lang = this.i18n.language() as Language;
     return field[lang] || field.en || [];
   }
+  lightboxImage: string | null = null;
+  lightboxCaption: string = '';
+
+  openLightbox(src: string, caption: string): void {
+    this.lightboxImage = src;
+    this.lightboxCaption = caption;
+  }
+
+  closeLightbox(): void {
+    this.lightboxImage = null;
+  }
 }

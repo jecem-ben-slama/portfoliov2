@@ -25,7 +25,6 @@ export class ProjectListComponent {
 
   readonly filters: FilterOption[] = [
     { value: 'all', labelKey: 'filters.all' },
-    { value: 'commercial', labelKey: 'filters.commercial' },
     { value: 'mobile', labelKey: 'filters.mobile' },
     { value: 'web-frontend', labelKey: 'filters.webFrontend' },
     { value: 'backend', labelKey: 'filters.backend' },

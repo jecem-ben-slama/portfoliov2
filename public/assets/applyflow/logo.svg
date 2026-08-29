@@ -1,0 +1,29 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="roundedSquare">
+      <rect x="0" y="0" width="512" height="512" rx="115" ry="115"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#roundedSquare)">
+    <!-- background -->
+    <rect x="0" y="0" width="512" height="512" fill="#0f172a"/>
+
+    <!-- motion lines -->
+    <rect x="111" y="286" width="117" height="15" rx="7.5" fill="#3d4297"/>
+    <rect x="145" y="331" width="69"  height="8"  rx="4"   fill="#2f3577"/>
+    <rect x="168" y="363" width="49"  height="6"  rx="3"   fill="#262d60"/>
+
+    <!-- paper plane -->
+    <!-- upper / lit facet -->
+    <polygon points="363,159 249,175 246,210 176,309" fill="#6c74fb"/>
+    <!-- lower / shadow facet -->
+    <polygon points="363,159 176,309 271,266" fill="#636bdb"/>
+
+    <!-- fold crease -->
+    <line x1="363" y1="159" x2="176" y2="309" stroke="#454ea0" stroke-width="2" opacity="0.55"/>
+
+    <!-- rim highlight along top leading edge -->
+    <line x1="363" y1="159" x2="249" y2="175" stroke="#c9cdff" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  </g>
+</svg>

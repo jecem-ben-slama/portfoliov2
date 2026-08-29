@@ -1,0 +1,45 @@
+<svg width="1240" height="820" viewBox="0 0 1240 820" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="navy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f3a63"/>
+      <stop offset="100%" stop-color="#123f6c"/>
+    </linearGradient>
+    <radialGradient id="bgTint" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f4f6f8"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="820" fill="url(#bgTint)"/>
+
+  <!-- LEFT CIRCLE (camera) -->
+  <circle cx="470" cy="410" r="232" fill="none" stroke="url(#navy)" stroke-width="26"/>
+
+  <!-- RIGHT CIRCLE (speech / A) -->
+  <circle cx="772" cy="410" r="232" fill="none" stroke="url(#navy)" stroke-width="26"/>
+
+  <!-- inner ring around the speech bubble -->
+  <circle cx="806" cy="398" r="150" fill="none" stroke="url(#navy)" stroke-width="18"/>
+
+  <!-- CAMERA ICON -->
+  <g stroke="url(#navy)" stroke-width="24" stroke-linejoin="round" stroke-linecap="round" fill="none">
+    <!-- viewfinder bump -->
+    <path d="M 420 300 h 34 l 14 -22 h 40 l 14 22 h 34" />
+    <!-- body -->
+    <rect x="340" y="300" width="256" height="182" rx="26"/>
+    <!-- lens outer -->
+    <circle cx="468" cy="392" r="62"/>
+    <!-- lens inner -->
+    <circle cx="468" cy="392" r="30"/>
+    <!-- flash dot -->
+    <circle cx="372" cy="332" r="7" fill="url(#navy)" stroke="none"/>
+  </g>
+
+  <!-- SPEECH BUBBLE WITH "A" -->
+  <g>
+    <path d="M 726 328 h 168 a 30 30 0 0 1 30 30 v 74 a 30 30 0 0 1 -30 30 h -96 l -46 46 v -46 h -26 a 30 30 0 0 1 -30 -30 v -74 a 30 30 0 0 1 30 -30 z"
+          fill="none" stroke="url(#navy)" stroke-width="22" stroke-linejoin="round"/>
+    <text x="810" y="418" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="96"
+          text-anchor="middle" fill="url(#navy)">A</text>
+  </g>
+</svg>

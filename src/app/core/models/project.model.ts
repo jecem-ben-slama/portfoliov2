@@ -1,8 +1,7 @@
 export type ProjectCategory =
   | 'mobile'
   | 'web-frontend'
-  | 'backend'
-  | 'commercial';
+  | 'backend';
 export type ProjectStatus = 'shipped' | 'in-progress' | 'draft';
 
 export type LocalizedString = {

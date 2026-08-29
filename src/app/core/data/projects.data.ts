@@ -19,7 +19,7 @@ export const PROJECTS: Project[] = [
     tags: ['Angular', 'Spring Boot', 'PostgreSQL', 'Docker', 'OAuth 2.0'],
     demoUrl: '',
     githubUrl: '',
-    image: '',
+    image: 'assets/applyflow/logo.svg',
     screenshots: [
       {
         src: '',
@@ -164,7 +164,7 @@ export const PROJECTS: Project[] = [
     releaseUrl:
       'https://github.com/jecem-ben-slama/remote_control/releases/latest',
     githubUrl: 'https://github.com/jecem-ben-slama/remote_control',
-    image: 'assets/remote-control/logo.jpg',
+    image: 'assets/remote-control/logo.svg',
     screenshots: [
       {
         src: 'assets/remote-control/remote.png',
@@ -291,7 +291,7 @@ export const PROJECTS: Project[] = [
     tags: ['Flutter', 'Clean Architecture', 'BLoC/Cubit', 'Google ML Kit'],
     demoUrl: '',
     githubUrl: '',
-    image: '',
+    image: 'assets/aipartner/logo.svg',
     screenshots: [
       {
         src: '',

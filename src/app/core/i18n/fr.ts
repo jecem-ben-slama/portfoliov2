@@ -150,7 +150,6 @@ export const fr = {
   },
   filters: {
     all: 'Tous',
-    commercial: 'Commercial',
     mobile: 'Mobile',
     webFrontend: 'Web Frontend',
     backend: 'Backend & API',

@@ -149,7 +149,7 @@ export const en = {
   },
   filters: {
     all: 'All',
-    commercial: 'Commercial',
+    
     mobile: 'Mobile',
     webFrontend: 'Web Frontend',
     backend: 'Backend & API',

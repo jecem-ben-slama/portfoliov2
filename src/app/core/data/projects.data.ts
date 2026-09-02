@@ -92,8 +92,8 @@ export const PROJECTS: Project[] = [
       },
       {
         title: {
-          en: 'Defensive state management.',
-          fr: 'Gestion d’état défensive.',
+          en: 'Defensive state management & rate limiting.',
+          fr: 'Gestion d’état défensive et limitation de débit.',
         },
         detail: {
           en: "Dispatch runs as a state machine, not a fire-and-forget call. Implemented a rate-limiter (Bucket4j, capped just under Google's quota) to throttle the backend before Google triggers a 429 Too Many Requests error.",
@@ -127,14 +127,14 @@ export const PROJECTS: Project[] = [
     },
     learned: {
       en: [
-        'GitHub branching strategies',
-        'Docker containerization',
-        'CI/CD workflow automation',
+        'Maintaining strict database integrity while gracefully handling non-linear user workflows through automatic backfilling of skipped pipeline states',
+        'Designing defensive UI patterns with contextual “?” tooltips to clarify complex metrics and prevent user confusion',
+        'Implementing memory-efficient file streaming to transfer large PDFs directly from Google Drive to API responses without persisting them in PostgreSQL',
       ],
       fr: [
-        'Stratégies de branches GitHub',
-        'Conteneurisation Docker',
-        'Automatisation des flux CI/CD',
+        'Garantir l’intégrité stricte de la base de données tout en gérant les parcours utilisateurs non linéaires grâce au remplissage automatique des étapes de workflow ignorées',
+        'Concevoir des interfaces défensives avec des infobulles contextuelles « ? » pour clarifier les métriques complexes et réduire les erreurs d’interprétation',
+        'Mettre en place un streaming de fichiers économe en mémoire pour transférer directement les PDF volumineux de Google Drive vers les réponses de l’API sans les persister dans PostgreSQL',
       ],
     },
   },
@@ -165,29 +165,31 @@ export const PROJECTS: Project[] = [
       'https://github.com/jecem-ben-slama/remote_control/releases/latest',
     githubUrl: 'https://github.com/jecem-ben-slama/remote_control',
     image: 'assets/remote-control/logo.svg',
-    screenshots: [
-      {
-        src: 'assets/remote-control/remote.png',
-        caption: {
-          en: 'System Matrix Register Map for command injection',
-          fr: "Matrice système pour l'injection de commandes",
-        },
-      },
-      {
-        src: 'assets/remote-control/mapper.png',
-        caption: {
-          en: 'Auto-Command Sweeper and carrier frequency tuning',
-          fr: 'Outil de balayage automatique et réglage de fréquence',
-        },
-      },
-      {
-        src: 'assets/remote-control/pdf.png',
-        caption: {
-          en: 'Auto-Command Sweeper and carrier frequency tuning',
-          fr: 'Outil de balayage automatique et réglage de fréquence',
-        },
-      },
-    ],
+screenshots: [
+  {
+    src: 'assets/remote-control/remote.png',
+    caption: {
+      en: 'Final remote control interface for command execution',
+      fr: "Interface finale de la télécommande pour l’exécution des commandes",
+    },
+  },
+  {
+    src: 'assets/remote-control/mapper.png',
+    caption: {
+      en: 'Frequency mapping interface for documenting the function of each discovered signal',
+      fr: 'Interface de mappage des fréquences pour documenter la fonction de chaque signal détecté',
+    },
+  },
+  {
+    src: 'assets/remote-control/pdf.png',
+    caption: {
+      en: 'Generated PDF report containing the discovered commands',
+      fr: 'Rapport PDF généré contenant les commandes détectées',
+    },
+  },
+],
+
+
     hook: {
       en: "My TV remote broke, and as a student staring at an obscure knockoff SMASNUG TV with zero replacement parts on the market, buying a new one wasn't an option. With no documentation and a phone with an IR blaster, I spent 72 hours building a custom hardware diagnostic toolkit from scratch—complete with an address space brute-forcer, register map viewer, and a Flutter telemetry interface to inject raw NEC protocol packets.",
       fr: "Ma télécommande s'est cassée. Étant étudiant avec une TV de marque obscure (SMASNUG) introuvable sur le marché, racheter n'était pas une option. Sans documentation, j'ai passé 72 heures à créer une boîte à outils de diagnostic matériel : force brute d'adresses, carte des registres et interface de télémétrie Flutter pour injecter des paquets NEC bruts.",
@@ -278,110 +280,125 @@ export const PROJECTS: Project[] = [
     slug: 'ai-partner',
     name: 'AI Partner',
     tagline: {
-      en: 'Offline translation app, built to actually learn Clean Architecture',
-      fr: 'Application de traduction hors-ligne pour apprendre Clean Architecture',
+      en: 'Offline ML translation engine demonstrating strict architecture boundaries.',
+      fr: 'Moteur de traduction ML hors-ligne démontrant des frontières architecturales strictes.',
     },
     description: {
-      en: 'A self-directed project to properly learn Clean Architecture and BLoC — an on-device translation app using Google ML Kit, with no internet required and nothing leaving the phone.',
-      fr: 'Un projet personnel pour maîtriser Clean Architecture et BLoC — une application de traduction locale utilisant Google ML Kit sans connexion Internet.',
+      en: 'A zero-latency, on-device OCR and translation assistant powered by Google ML Kit. Built as a proving ground to rigorously apply Clean Architecture, Dependency Injection, and the BLoC pattern in a Flutter environment.',
+      fr: "Un assistant d'OCR et de traduction local sans latence propulsé par Google ML Kit. Conçu comme un terrain d'essai pour appliquer rigoureusement la Clean Architecture, l'injection de dépendances et le pattern BLoC avec Flutter.",
     },
     categories: ['mobile'],
     featured: true,
     status: 'shipped',
-    tags: ['Flutter', 'Clean Architecture', 'BLoC/Cubit', 'Google ML Kit'],
+    tags: [
+      'Flutter',
+      'Clean Architecture',
+      'BLoC/Cubit',
+      'Google ML Kit',
+      'Offline-First',
+      'OCR / Text Recognition',
+    ],
     demoUrl: '',
-    githubUrl: '',
+    releaseUrl: 'https://github.com/jecem-ben-slama/Ai_Partner/releases/latest',
+    githubUrl: 'https://github.com/jecem-ben-slama/Ai_Partner',
     image: 'assets/aipartner/logo.svg',
     screenshots: [
       {
-        src: '',
+        src: 'assets/aipartner/text-extraction.gif',
         caption: {
-          en: 'Translator screen',
-          fr: 'Écran de traduction',
+          en: 'Real-time On-Device Text Extraction (OCR)',
+          fr: "Extraction de texte sur l'appareil en temps réel (OCR)",
         },
       },
       {
-        src: '',
+        src: 'assets/aipartner/translation.gif',
         caption: {
-          en: 'Text-to-speech player',
-          fr: 'Lecteur de synthèse vocale',
+          en: 'Real-time Translator Screen',
+          fr: 'Écran de traduction en temps réel',
+        },
+      },
+      {
+        src: 'assets/aipartner/tts.gif',
+        caption: {
+          en: 'Text-to-Speech Playback',
+          fr: 'Lecteur de synthèse vocale ',
         },
       },
     ],
     hook: {
-      en: 'I built this specifically to practice Clean Architecture and the BLoC/Cubit pattern properly, instead of just reading about them. I wanted something with real complexity to make the architecture worth it — an on-device translation app fit, since state actually changes over time (model downloads, offline availability, playback) rather than being a simple CRUD screen.',
-      fr: 'Créé spécifiquement pour pratiquer Clean Architecture et le pattern BLoC/Cubit. Une application de traduction locale présentait la complexité idéale pour justifier cette architecture.',
+      en: 'Most state management tutorials focus on simple CRUD screens. I wanted to prove I could handle complex, asynchronous state. I built an offline translation app because managing large background model downloads, hardware haptics, and offline availability forces you to either respect architectural boundaries or watch your app break.',
+      fr: "La plupart des tutoriels se limitent à de simples écrans CRUD. Je voulais prouver ma capacité à gérer des états asynchrones complexes. J'ai créé cette application car la gestion des téléchargements de modèles en arrière-plan et de la disponibilité hors-ligne oblige à respecter les frontières architecturales.",
     },
     problem: {
-      en: 'A Flutter app that translates and identifies languages entirely on-device using Google ML Kit, so it works with no internet connection and nothing leaves the phone. It also includes text-to-speech playback, haptic feedback, and local notifications for background model downloads.',
-      fr: "Une application Flutter qui traduit et identifie les langues entièrement sur l'appareil via Google ML Kit, sans connexion Internet, avec synthèse vocale et retours haptiques.",
+      en: 'Cloud-based OCR and translation apps compromise user privacy, introduce high latency, and fail without network access. The challenge was building an offline-first solution that parses physical text and processes languages locally while leveraging native background threads to avoid blocking the UI during heavy ML operations.',
+      fr: "Les applications d'OCR et de traduction basées sur le cloud compromettent la confidentialité, introduisent de la latence et nécessitent un réseau. Le défi était de créer une solution hors-ligne extrayant le texte physique et traitant les langues localement tout en exploitant des threads natifs pour éviter de bloquer l'UI.",
     },
     how: {
       en: [
-        'State flows one direction through Cubits — the presentation layer only rebuilds in response to emitted state, never reaching into business logic directly.',
-        'Third-party SDKs (ML Kit, Flutter TTS) are wrapped in custom service classes, isolating the app from the specific packages underneath.',
-        "ML Kit's translation models are large, so downloads run in the background with progress tracking, without blocking the main UI isolate.",
-        'Services and repositories are provided once at the app root via MultiRepositoryProvider/MultiBlocProvider, keeping lifecycle management in one place.',
+        'Enforced unidirectional data flow via Cubits—the presentation layer blindly reacts to emitted states and contains zero business logic.',
+        'Encapsulated third-party SDKs (Google ML Kit, Flutter TTS) inside a dedicated Service layer, preventing vendor lock-in across the application core.',
+        'Delegated heavy machine learning computations and model downloads to native background threads via platform channels, keeping the Dart UI thread fluid.',
+        'Managed app-wide dependency injection through MultiRepositoryProvider, ensuring clean lifecycle control for all services and repositories.',
       ],
       fr: [
-        "Flux d'état unidirectionnel via des Cubits, isolant la couche de présentation de la logique métier.",
-        'Encapsulation des SDK tiers (ML Kit, TTS) dans des classes de service personnalisées.',
-        'Téléchargements de modèles ML Kit gérés en arrière-plan avec suivi de progression.',
-        "Injection des services et repositories au niveau de la racine de l'application.",
+        "Application d'un flux de données unidirectionnel via des Cubits—la couche de présentation réagit aveuglément aux états sans logique métier.",
+        'Encapsulation des SDK tiers (Google ML Kit, Flutter TTS) dans une couche de service dédiée pour éviter le vendor lock-in.',
+        'Délégation des calculs ML lourds et des téléchargements vers des threads natifs en arrière-plan pour maintenir une UI fluide.',
+        "Gestion de l'injection de dépendances globale via MultiRepositoryProvider pour un contrôle propre du cycle de vie.",
       ],
     },
     proud: [
       {
         title: {
           en: 'Keeping the UI genuinely dumb.',
-          fr: 'Garder l’interface utilisateur simple et passive.',
+          fr: 'Garder l’interface utilisateur strictement passive.',
         },
         detail: {
-          en: "The main thing I wanted to get right: a presentation layer that only reacts to emitted state, not one that's just organized to look passive.",
-          fr: 'Une couche de présentation qui réagit uniquement aux états émis sans logique superflue.',
+          en: 'The presentation layer strictly listens to states and renders UI. It contains no business logic, no try-catch error parsing, and no direct service calls.',
+          fr: "La couche de présentation écoute strictement les états et s'affiche. Elle ne contient aucune logique métier ni appel direct aux services.",
         },
       },
       {
         title: {
-          en: 'Isolating third-party SDKs behind my own interfaces.',
-          fr: 'Isoler les SDK tiers derrière mes propres interfaces.',
+          en: 'Pragmatic Service Encapsulation.',
+          fr: 'Encapsulation pragmatique des services.',
         },
         detail: {
-          en: 'ML Kit and TTS are wrapped in service classes so nothing above that layer knows which package is actually doing the work.',
-          fr: 'ML Kit et TTS sont encapsulés pour masquer les dépendances sous-jacentes.',
+          en: 'By wrapping ML Kit in a concrete service singleton, third-party implementation details are kept completely isolated from the business logic layer.',
+          fr: "En encapsulant ML Kit dans un service singleton concret, les détails d'implémentation tiers restent totalement isolés de la logique métier.",
         },
       },
       {
         title: {
-          en: 'Handling background model downloads without freezing the UI.',
-          fr: 'Gérer les téléchargements en arrière-plan sans bloquer l’UI.',
+          en: 'Non-blocking Native Execution.',
+          fr: 'Exécution native non bloquante.',
         },
         detail: {
-          en: 'This was the most fiddly part of the project — more so than the translation logic itself.',
-          fr: 'La partie la plus délicate du projet, surpassant la logique de traduction elle-même.',
+          en: 'Leveraging asynchronous execution and platform channels allowed model downloads and identification to run without frame drops.',
+          fr: "L'exploitation de l'exécution asynchrone a permis d'exécuter les téléchargements et identifications sans perte de fluidité.",
         },
       },
     ],
     tradeoffs: {
       en: [
-        'This is a solo learning project, not a shipped product with real users — built to get the architecture right, not to compete with existing translation apps.',
-        'The offline/on-device angle is genuinely useful, but the real value here was what building it taught about structuring a non-trivial Flutter app.',
+        'App Size vs. Privacy: Bundling offline ML models increases the initial app footprint, but guarantees zero-latency and absolute user data privacy.',
+        'Boilerplate vs. Modularity: Implementing a structured Clean Architecture approach for a focused utility app introduced development overhead, but delivered a highly testable, predictable codebase.',
       ],
       fr: [
-        "Projet d'apprentissage en solo orienté vers la maîtrise architecturale plutôt que la concurrence commerciale.",
-        "L'intérêt principal réside dans l'apprentissage de la structuration d'une application Flutter complexe.",
+        "Taille de l'app vs Confidentialité : L'intégration de modèles ML locaux augmente le poids de l'application, mais garantit une absence de latence et une confidentialité absolue.",
+        "Boilerplate vs Modularité : L'implémentation d'une architecture structurée a demandé plus de temps, mais a produit un code hautement testable et prévisible.",
       ],
     },
     learned: {
       en: [
-        'Clean Architecture principles in Flutter',
-        'BLoC/Cubit state management pattern',
-        'Google ML Kit local model integration',
+        'Structuring state boundaries in Flutter with BLoC',
+        'Isolating external SDK dependencies cleanly',
+        'Handling asynchronous native platform channels',
       ],
       fr: [
-        'Principes de la Clean Architecture dans Flutter',
-        'Modèle de gestion d’état BLoC/Cubit',
-        'Intégration de modèles locaux Google ML Kit',
+        "Structuration des frontières d'état dans Flutter avec BLoC",
+        'Isolation propre des dépendances SDK externes',
+        'Gestion des canaux de communication natifs asynchrones',
       ],
     },
   },

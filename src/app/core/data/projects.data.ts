@@ -17,12 +17,12 @@ export const PROJECTS: Project[] = [
     featured: true,
     status: 'shipped',
     tags: ['Angular', 'Spring Boot', 'PostgreSQL', 'Docker', 'OAuth 2.0'],
-    demoUrl: '',
+    demoUrl: 'https://applyflow-portal.vercel.app/',
     githubUrl: '',
     image: 'assets/applyflow/logo.svg',
     screenshots: [
       {
-        src: '',
+        src: 'assets/applyflow/email-preview.png',
         caption: {
           en: 'Live preview: stitched email before send',
           fr: 'Aperçu en direct : e-mail assemblé avant envoi',
@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
         },
       },
       {
-        src: '',
+        src: 'assets/applyflow/template.png',
         caption: {
           en: 'Template editor with dynamic placeholders',
           fr: 'Éditeur de modèles avec balises dynamiques',
@@ -165,30 +165,29 @@ export const PROJECTS: Project[] = [
       'https://github.com/jecem-ben-slama/remote_control/releases/latest',
     githubUrl: 'https://github.com/jecem-ben-slama/remote_control',
     image: 'assets/remote-control/logo.svg',
-screenshots: [
-  {
-    src: 'assets/remote-control/remote.png',
-    caption: {
-      en: 'Final remote control interface for command execution',
-      fr: "Interface finale de la télécommande pour l’exécution des commandes",
-    },
-  },
-  {
-    src: 'assets/remote-control/mapper.png',
-    caption: {
-      en: 'Frequency mapping interface for documenting the function of each discovered signal',
-      fr: 'Interface de mappage des fréquences pour documenter la fonction de chaque signal détecté',
-    },
-  },
-  {
-    src: 'assets/remote-control/pdf.png',
-    caption: {
-      en: 'Generated PDF report containing the discovered commands',
-      fr: 'Rapport PDF généré contenant les commandes détectées',
-    },
-  },
-],
-
+    screenshots: [
+      {
+        src: 'assets/remote-control/remote.png',
+        caption: {
+          en: 'Final remote control interface for command execution',
+          fr: 'Interface finale de la télécommande pour l’exécution des commandes',
+        },
+      },
+      {
+        src: 'assets/remote-control/mapper.png',
+        caption: {
+          en: 'Frequency mapping interface for documenting the function of each discovered signal',
+          fr: 'Interface de mappage des fréquences pour documenter la fonction de chaque signal détecté',
+        },
+      },
+      {
+        src: 'assets/remote-control/pdf.png',
+        caption: {
+          en: 'Generated PDF report containing the discovered commands',
+          fr: 'Rapport PDF généré contenant les commandes détectées',
+        },
+      },
+    ],
 
     hook: {
       en: "My TV remote broke, and as a student staring at an obscure knockoff SMASNUG TV with zero replacement parts on the market, buying a new one wasn't an option. With no documentation and a phone with an IR blaster, I spent 72 hours building a custom hardware diagnostic toolkit from scratch—complete with an address space brute-forcer, register map viewer, and a Flutter telemetry interface to inject raw NEC protocol packets.",

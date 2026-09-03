@@ -42,6 +42,7 @@ export const fr = {
     launchDemo: "Lancer l'émulateur",
     closeDemo: "Fermer l'émulateur",
     github: 'GitHub',
+    apiDocs: 'Docs API',
     access: 'Accès',
     stack: 'Technologies',
     problem: 'Le problème',

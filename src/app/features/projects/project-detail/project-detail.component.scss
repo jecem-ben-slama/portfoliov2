@@ -1,5 +1,5 @@
 /* ==========================================================
-   GLOBAL RESET (fixes mobile edge-overflow bug)
+   GLOBAL RESET & LAYOUT FIXES
    ========================================================== */
 
 *,
@@ -10,41 +10,36 @@
 
 body {
   overflow-x: hidden;
+  width: 100%;
 }
 
 .detail-page {
   max-width: 1140px;
   width: 100%;
   margin: 0 auto;
-  padding: 48px 24px 120px;
+  padding: 40px 20px 100px;
+  box-sizing: border-box;
 }
 
 /* ---------- Split layout ---------- */
 
 .split {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  column-gap: 56px;
+  grid-template-columns: 260px 1fr;
+  column-gap: 48px;
   align-items: start;
+  min-width: 0;
 }
 
-/*
- * Back button + sidebar stay together.
- *
- * Navbar height = 64px.
- * 16px extra spacing gives us:
- * 64px navbar + 16px gap = 80px.
- */
 .left-column {
   position: sticky;
   top: 80px;
   align-self: start;
-
   display: flex;
   flex-direction: column;
   gap: 16px;
-
   z-index: 20;
+  min-width: 0;
 }
 
 /* ---------- Back link ---------- */
@@ -53,31 +48,20 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
   width: max-content;
-
+  max-width: 100%;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 13px;
-
   color: var(--muted);
   text-decoration: none;
-
   margin: 0;
-
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
-
-  /*
-   * The background is useful because the navbar/content
-   * can scroll behind the sticky column.
-   */
+  transition: color 0.2s ease, transform 0.2s ease;
   background: var(--ink, rgba(10, 10, 10, 0.88));
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-
   padding: 6px 10px;
   border-radius: 6px;
+  overflow-wrap: break-word;
 }
 
 .back-link:hover {
@@ -91,31 +75,21 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
 }
 
-/* ---------- Sidebar cards ---------- */
-
 .sidebar-card {
-  background: var(
-    --ink-raised,
-    rgba(255, 255, 255, 0.02)
-  );
-
-  border: 1px solid var(
-    --line,
-    rgba(255, 255, 255, 0.08)
-  );
-
+  background: var(--ink-raised, rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.08));
   border-radius: 12px;
-
-  padding: 20px;
-
+  padding: 18px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .status-card {
-  padding: 14px 20px;
-
+  padding: 14px 18px;
   display: flex;
   align-items: center;
 }
@@ -124,40 +98,24 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-
   letter-spacing: 0.1em;
   text-transform: uppercase;
-
   font-weight: 600;
 }
 
 .status-dot {
   width: 8px;
   height: 8px;
-
   border-radius: 50%;
-
   background: currentColor;
-
   box-shadow: 0 0 8px currentColor;
 }
 
-.status.active {
-  color: var(--state, #10B981);
-}
-
-.status.progress {
-  color: var(--signal, #3B82F6);
-}
-
-.status.draft {
-  color: var(--muted, #6B7280);
-}
-
-/* ---------- Sidebar links ---------- */
+.status.active { color: var(--state, #10B981); }
+.status.progress { color: var(--signal, #3B82F6); }
+.status.draft { color: var(--muted, #6B7280); }
 
 .links {
   display: flex;
@@ -170,25 +128,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 100%;
-
   text-align: center;
-
   padding: 10px 16px;
-
   border-radius: 8px;
-
   font-size: 13px;
   font-family: 'IBM Plex Mono', monospace;
-
   text-decoration: none;
   font-weight: 500;
-
-  transition:
-    background 0.2s,
-    transform 0.1s,
-    border-color 0.2s;
+  transition: background 0.2s, transform 0.1s, border-color 0.2s;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .links .btn.primary {
@@ -204,9 +154,7 @@ body {
 .links .btn.secondary,
 .links .btn:not(.primary) {
   background: transparent;
-
   border: 1px solid var(--line);
-
   color: var(--paper, #fff);
 }
 
@@ -216,23 +164,14 @@ body {
   color: var(--signal);
 }
 
-/* ---------- Sidebar headings ---------- */
-
 .side-heading {
   font-family: 'IBM Plex Mono', monospace;
-
   font-size: 11px;
-
   letter-spacing: 0.12em;
-
   text-transform: uppercase;
-
   color: var(--signal);
-
-  margin: 0 0 14px 0;
+  margin: 0 0 12px 0;
 }
-
-/* ---------- Tags ---------- */
 
 .tags {
   display: flex;
@@ -242,122 +181,86 @@ body {
 
 .tag {
   font-family: 'IBM Plex Mono', monospace;
-
   font-size: 11px;
-
   padding: 4px 8px;
-
   background: rgba(255, 255, 255, 0.05);
-
   border: 1px solid var(--line);
-
   border-radius: 6px;
-
   color: var(--paper-dim, #ccc);
+  overflow-wrap: break-word;
 }
-
-/* ---------- Sidebar list ---------- */
 
 .sidebar-list {
   margin: 0;
-
   padding-left: 16px;
-
   font-size: 13px;
-
   color: var(--paper-dim);
-
   display: flex;
   flex-direction: column;
-
   gap: 8px;
 }
 
 .sidebar-list li {
   line-height: 1.4;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-/* ---------- Practices visibility ---------- */
-
-.desktop-practices {
-  display: block;
-}
-
-.mobile-practices {
-  display: none;
-}
+.desktop-practices { display: block; }
+.mobile-practices { display: none; }
 
 /* ---------- Main content ---------- */
 
 .main {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  min-width: 0; /* prevents grid/flex children from forcing overflow */
+  gap: 28px;
+  min-width: 0;
 }
 
 .main-header {
   border-bottom: 1px solid var(--line);
-  padding-bottom: 24px;
+  padding-bottom: 20px;
+  min-width: 0;
 }
 
 .main h1 {
-  font-size: clamp(32px, 4vw, 44px);
-
+  font-size: clamp(24px, 3.5vw, 40px);
   font-weight: 700;
-
   letter-spacing: -0.02em;
-
-  margin: 0 0 12px 0;
-
+  margin: 0 0 10px 0;
   color: var(--paper);
-
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
 .tagline {
   color: var(--muted);
-
-  font-size: 17px;
-
+  font-size: 16px;
   line-height: 1.5;
-
   margin: 0;
-
   overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ---------- Hook ---------- */
 
 .hook-card {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(59, 130, 246, 0.05),
-      transparent
-    );
-
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
   border-left: 3px solid var(--signal);
-
   border-radius: 0 12px 12px 0;
-
-  padding: 20px 24px;
+  padding: 18px 22px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .hook {
   font-family: 'Space Grotesk', sans-serif;
-
-  font-size: 18px;
-
+  font-size: 16px;
   font-weight: 500;
-
   line-height: 1.6;
-
   color: var(--paper);
-
   margin: 0;
-
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -366,29 +269,19 @@ body {
 
 .emulator-wrapper {
   display: flex;
-
   justify-content: center;
-
   background: var(--ink-raised);
-
   border: 1px solid var(--line);
-
   border-radius: 16px;
-
-  padding: 24px;
-
-  margin: 8px 0;
-
-  overflow-x: auto; /* lets the fixed-width iframe scroll instead of blowing out the page */
+  padding: 20px;
+  margin: 6px 0;
+  overflow-x: auto;
 }
 
 .emulator-container {
   border-radius: 12px;
-
   overflow: hidden;
-
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-
   flex-shrink: 0;
 }
 
@@ -396,105 +289,77 @@ body {
 
 .content-sections {
   display: flex;
-
   flex-direction: column;
-
-  gap: 36px;
+  gap: 32px;
+  min-width: 0;
 }
 
 .block {
-  background:
-    var(
-      --ink-raised,
-      rgba(255, 255, 255, 0.01)
-    );
-
-  border: 1px solid
-    var(
-      --line,
-      rgba(255, 255, 255, 0.05)
-    );
-
+  background: var(--ink-raised, rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.05));
   border-radius: 14px;
-
-  padding: 28px;
+  padding: 24px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .block h3 {
   font-family: 'IBM Plex Mono', monospace;
-
   font-size: 12px;
-
   letter-spacing: 0.12em;
-
   text-transform: uppercase;
-
   color: var(--signal);
-
-  margin: 0 0 16px 0;
-
+  margin: 0 0 14px 0;
   display: flex;
-
   align-items: center;
-
   gap: 8px;
 }
 
 .block p {
   margin: 0;
-
-  font-size: 16px;
-
+  font-size: 15px;
   line-height: 1.6;
-
   color: var(--paper-dim, #d1d5db);
-
   overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ---------- Styled lists ---------- */
 
 .styled-list {
   margin: 0;
-
   padding-left: 0;
-
   list-style: none;
-
   display: flex;
-
   flex-direction: column;
-
   gap: 12px;
 }
 
 .styled-list li {
   position: relative;
-
   padding-left: 20px;
-
-  font-size: 15px;
-
+  font-size: 14px;
   line-height: 1.5;
-
   color: var(--paper-dim);
-
   overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.styled-list li span {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  display: inline-block;
+  max-width: 100%;
 }
 
 .styled-list li::before {
   content: "›";
-
   position: absolute;
-
   left: 0;
-
   color: var(--signal);
-
   font-weight: bold;
-
   font-size: 18px;
-
   line-height: 1;
 }
 
@@ -502,36 +367,28 @@ body {
 
 .proud-list {
   margin: 0;
-
   padding: 0;
-
   list-style: none;
-
   display: flex;
-
   flex-direction: column;
-
-  gap: 16px;
+  gap: 14px;
 }
 
 .proud-list li {
   background: rgba(255, 255, 255, 0.02);
-
   border: 1px solid var(--line);
-
   border-radius: 8px;
-
-  padding: 16px;
+  padding: 14px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .proud-title {
-  font-size: 15px;
-
+  font-size: 14px;
   color: var(--paper);
-
-  margin-bottom: 6px;
-
+  margin-bottom: 4px;
   overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .proud-title b {
@@ -539,71 +396,53 @@ body {
 }
 
 .proud-detail {
-  font-size: 14px;
-
+  font-size: 13.5px;
   color: var(--muted);
-
   line-height: 1.5;
-
   overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ---------- Gallery ---------- */
 
 .gallery-heading {
   font-family: 'IBM Plex Mono', monospace;
-
   font-size: 12px;
-
   letter-spacing: 0.12em;
-
   text-transform: uppercase;
-
   color: var(--signal);
-
-  margin: 0 0 16px 0;
+  margin: 0 0 14px 0;
 }
 
 .gallery {
   display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(160px, 1fr));
-
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 12px;
-
   max-width: 720px;
+  width: 100%;
 }
 
 .gallery figure {
   margin: 0;
-
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .img-container {
   border-radius: 10px;
-
   overflow: hidden;
-
   border: 1px solid var(--line);
-
   background: var(--ink-raised);
-
   aspect-ratio: 4 / 3;
-
   cursor: zoom-in;
 }
 
 .gallery img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-
   display: block;
-
   transition: transform 0.3s ease;
 }
 
@@ -612,181 +451,102 @@ body {
 }
 
 .gallery figcaption {
-  font-size: 11.5px;
-
+  font-size: 11px;
   color: var(--muted);
-
   margin-top: 6px;
-
   font-family: 'IBM Plex Mono', monospace;
-
   overflow-wrap: break-word;
 }
 
 .img-placeholder {
   width: 100%;
   height: 100%;
-
   background: var(--ink-raised);
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   text-align: center;
-
   padding: 12px;
-
   font-family: 'IBM Plex Mono', monospace;
-
   font-size: 11px;
-
   color: var(--muted);
+  overflow-wrap: break-word;
 }
 
 /* ---------- Lightbox ---------- */
 
 .lightbox {
   position: fixed;
-
   inset: 0;
-
   background: rgba(0, 0, 0, 0.85);
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
-
   gap: 16px;
-
   z-index: 1000;
-
-  padding: 40px 24px;
-
+  padding: 40px 20px;
   cursor: zoom-out;
 }
 
 .lightbox img {
   max-width: min(90vw, 900px);
-
   max-height: 80vh;
-
   border-radius: 8px;
-
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.5);
-
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   cursor: default;
 }
 
 .lightbox figcaption {
   color: var(--paper-dim, #ddd);
-
   font-family: 'IBM Plex Mono', monospace;
-
   font-size: 13px;
-
   text-align: center;
-
   overflow-wrap: break-word;
 }
 
 .lightbox-close {
   position: absolute;
-
   top: 24px;
   right: 24px;
-
   background: none;
-
   border: 1px solid var(--line);
-
   color: var(--paper, #fff);
-
   width: 36px;
   height: 36px;
-
   border-radius: 50%;
-
   font-size: 16px;
-
   cursor: pointer;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
 
 .lightbox-close:hover {
   border-color: var(--signal);
-
   color: var(--signal);
 }
 
-/* ---------- Not found ---------- */
-
-.not-found {
-  text-align: center;
-
-  padding: 120px 24px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  gap: 20px;
-}
-
-.not-found p {
-  font-size: 18px;
-
-  color: var(--muted);
-}
-
-.not-found .btn {
-  padding: 10px 20px;
-
-  background: var(--ink-raised);
-
-  border: 1px solid var(--line);
-
-  color: var(--paper);
-
-  border-radius: 8px;
-
-  text-decoration: none;
-
-  font-family: 'IBM Plex Mono', monospace;
-}
-
 /* ==========================================================
-   MOBILE
+   MOBILE BREAKPOINTS
    ========================================================== */
 
 @media (max-width: 900px) {
-
   .split {
     display: flex;
     flex-direction: column;
-    row-gap: 24px;
+    row-gap: 20px;
+    width: 100%;
+    min-width: 0;
   }
 
-  /*
-   * Disable sticky behavior completely on mobile.
-   */
   .left-column {
     position: static;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     width: 100%;
+    min-width: 0;
     z-index: auto;
   }
 
@@ -800,29 +560,41 @@ body {
 
   .sidebar {
     position: static;
+    width: 100%;
+    min-width: 0;
   }
 
-  .desktop-practices {
-    display: none;
-  }
-
-  .mobile-practices {
-    display: block;
-  }
+  .desktop-practices { display: none; }
+  .mobile-practices { display: block; }
 }
 
 @media (max-width: 600px) {
-
   .detail-page {
-    padding: 24px 16px 80px;
+    padding: 16px 12px 60px;
   }
 
   .block {
-    padding: 20px;
+    padding: 16px;
+  }
+
+  .hook-card {
+    padding: 14px 16px;
+  }
+
+  .main h1 {
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .tagline {
+    font-size: 14px;
+  }
+
+  .hook {
+    font-size: 14.5px;
   }
 
   .gallery {
-    grid-template-columns:
-      repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }

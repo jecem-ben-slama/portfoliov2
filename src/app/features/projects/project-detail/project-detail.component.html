@@ -33,7 +33,7 @@
           </div>
 
           <div class="sidebar-card links-card"
-            *ngIf="project.demoUrl || project.releaseUrl || project.appetizeUrl || project.githubUrl">
+            *ngIf="project.demoUrl || project.releaseUrl || project.appetizeUrl || project.githubUrl || project.apiUrl">
 
             <h3 class="side-heading">{{ i18n.t('projects.access') }}</h3>
 
@@ -53,6 +53,10 @@
                 ? i18n.t('projects.closeDemo')
                 : i18n.t('projects.launchDemo') }}
               </button>
+
+              <a *ngIf="project.apiUrl" [href]="project.apiUrl" target="_blank" rel="noopener" class="btn">
+                {{ i18n.t('projects.apiDocs') || 'API Docs' }} &nearr;
+              </a>
 
               <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener" class="btn">
                 {{ i18n.t('projects.github') }} &nearr;

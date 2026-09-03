@@ -42,6 +42,7 @@ export const en = {
     launchDemo: 'Launch Emulator',
     closeDemo: 'Close Emulator',
     github: 'GitHub',
+    apiDocs: 'API Docs',
     access: 'Access',
     stack: 'Stack',
     problem: 'The problem',

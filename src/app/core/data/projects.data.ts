@@ -440,8 +440,10 @@ export const PROJECTS: Project[] = [
       'WebSockets',
       'Hibernate/JPA',
     ],
-    demoUrl: 'https://loom.com/share/your-2-min-demo-video-link',
+    demoUrl: '',
     releaseUrl: '',
+    apiUrl:
+      'https://iit-851148.docs.buildwithfern.com/internship-manager/introduction',
     githubUrl: 'https://github.com/jecem-ben-slama/applyflow',
     image: 'assets/applyflow/logo.svg',
     screenshots: [

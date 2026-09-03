@@ -35,6 +35,7 @@ export interface Project {
   releaseUrl?: string;
   appetizeUrl?: string;
   githubUrl?: string;
+  apiUrl?: string;
   image?: string;
   screenshots?: ProjectScreenshot[];
 

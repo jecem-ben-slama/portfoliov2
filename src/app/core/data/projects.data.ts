@@ -16,7 +16,14 @@ export const PROJECTS: Project[] = [
     categories: ['web-frontend', 'backend'],
     featured: true,
     status: 'shipped',
-    tags: ['Angular', 'Spring Boot', 'PostgreSQL', 'Docker', 'OAuth 2.0'],
+    tags: [
+      'Angular',
+      'Spring Boot',
+      'PostgreSQL',
+      'Docker',
+      'OAuth 2.0',
+      'Bucket4j',
+    ],
     demoUrl: 'https://applyflow-portal.vercel.app/',
     githubUrl: '',
     image: 'assets/applyflow/logo.svg',
@@ -113,28 +120,38 @@ export const PROJECTS: Project[] = [
     ],
     tradeoffs: {
       en: [
-        "Streaming CVs from Drive saved database space but added a dependency on Drive's response time — implemented strict timeouts so a slow third-party response couldn't hang a backend thread indefinitely.",
-        'Users frequently skip statuses (jumping straight from "applied" to "offer"), so state transitions had to be backfilled automatically to maintain schema integrity for the funnel queries.',
-        'Cover letter personalization is templated, not AI-generated. The system automates the repetitive data-binding, but the substance of the application still requires a human pass.',
-        'Currently load-tested only for single-user capacity. Next milestone: building a Testcontainers suite that explicitly mocks Gmail API 500 errors and rate-limit responses to mathematically prove the retry logic.',
+        'Streaming CVs synchronously from Google Drive saved database storage space, but introduced external network latency — requiring aggressive HTTP timeouts to prevent backend thread starvation.',
+        'Buffering PDF bytes into JVM heap memory kept PostgreSQL lean, but created a potential memory bottleneck under high concurrency.',
+        'Cover letter generation uses dynamic template placeholders rather than an AI/LLM wrapper — prioritizing predictable formatting and execution speed over generative text.',
+        'Currently load-tested only for single-user capacity. Next milestone: building a Testcontainers suite that explicitly mocks Gmail API 500 errors and rate-limit responses.',
       ],
       fr: [
-        'Le streaming des CV depuis Drive économise de l’espace mais crée une dépendance au temps de réponse — des timeouts stricts ont été mis en place.',
-        'Les utilisateurs sautent parfois des étapes (passant directement de "candidaté" à "offre"), nécessitant une rétro-correction automatique des statuts.',
-        'La lettre de motivation utilise des modèles paramétriques et non de l’IA, nécessitant une relecture humaine finale.',
-        'Testé uniquement pour un usage mono-utilisateur à ce stade.',
+        'Le streaming des CV depuis Drive économise de l’espace en base de données, mais introduit une latence réseau — nécessitant des timeouts HTTP stricts pour éviter la saturation des threads.',
+        'Le stockage temporaire des octets du CV dans la mémoire JVM évite d’encombrer PostgreSQL, mais crée un goulot potentiel sous forte charge.',
+        'La génération des lettres de motivation utilise des balises de modèles dynamiques plutôt qu’une IA — privilégiant un formatage prévisible et la rapidité d’exécution.',
+        'Testé uniquement pour un usage mono-utilisateur à ce stade. Prochaine étape : suite de tests Testcontainers simulant les erreurs d’API.',
       ],
     },
     learned: {
       en: [
-        'Maintaining strict database integrity while gracefully handling non-linear user workflows through automatic backfilling of skipped pipeline states',
-        'Designing defensive UI patterns with contextual “?” tooltips to clarify complex metrics and prevent user confusion',
-        'Implementing memory-efficient file streaming to transfer large PDFs directly from Google Drive to API responses without persisting them in PostgreSQL',
+        'Building token-bucket rate limiters in Spring Boot using Bucket4j to prevent HTTP 429 quota exhaustion',
+        'Implementing memory-efficient file streaming to bypass PostgreSQL BLOB storage by passing byte arrays directly in JVM memory',
+        'Designing defensive UI patterns with contextual "?" tooltips to clarify complex metrics and prevent user confusion',
       ],
       fr: [
-        'Garantir l’intégrité stricte de la base de données tout en gérant les parcours utilisateurs non linéaires grâce au remplissage automatique des étapes de workflow ignorées',
-        'Concevoir des interfaces défensives avec des infobulles contextuelles « ? » pour clarifier les métriques complexes et réduire les erreurs d’interprétation',
-        'Mettre en place un streaming de fichiers économe en mémoire pour transférer directement les PDF volumineux de Google Drive vers les réponses de l’API sans les persister dans PostgreSQL',
+        'Mise en place de limiteurs de débit avec Bucket4j sous Spring Boot pour éviter les erreurs HTTP 429',
+        'Implémentation d’un streaming de fichiers économe en mémoire pour contourner le stockage BLOB dans PostgreSQL',
+        'Conception d’interfaces défensives avec des infobulles contextuelles « ? » pour clarifier les métriques complexes',
+      ],
+    },
+    lessons: {
+      en: [
+        'Never trust user behavior to follow linear happy paths: users will routinely skip workflow steps (e.g. jumping from "Applied" directly to "Offer"), so the backend must automatically backfill missing state gaps to protect data integrity.',
+        'Never trust third-party availability: external API integrations like Google Drive require aggressive client timeouts to keep slow HTTP calls from exhausting system thread pools.',
+      ],
+      fr: [
+        'Ne jamais faire confiance au comportement utilisateur : les utilisateurs sautent systématiquement des étapes (ex: passer de "Candidaté" à "Offre"). Le backend doit combler automatiquement ces lacunes pour préserver l’intégrité des données.',
+        'Ne jamais faire confiance à la disponibilité des services tiers : les API externes comme Google Drive nécessitent des timeouts stricts pour éviter d’épuiser les pools de threads.',
       ],
     },
   },
@@ -325,7 +342,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     hook: {
-      en: 'Most state management tutorials focus on simple CRUD screens. I wanted to prove I could handle complex, asynchronous state. I built an offline translation app because managing large background model downloads, hardware haptics, and offline availability forces you to either respect architectural boundaries or watch your app break.',
+      en: 'Cloud-based translation apps compromise privacy and fail offline. I built an offline-first, zero-latency OCR and translation engine to rigorously test Clean Architecture and handle heavy asynchronous ML model downloads without dropping UI frames',
       fr: "La plupart des tutoriels se limitent à de simples écrans CRUD. Je voulais prouver ma capacité à gérer des états asynchrones complexes. J'ai créé cette application car la gestion des téléchargements de modèles en arrière-plan et de la disponibilité hors-ligne oblige à respecter les frontières architecturales.",
     },
     problem: {
@@ -401,152 +418,115 @@ export const PROJECTS: Project[] = [
       ],
     },
   },
-
-  // ---------------------------------------------------------------------
-  // PLACEHOLDERS
-  // ---------------------------------------------------------------------
+  //* IIT Internship
   {
-    slug: 'school-backend',
-    name: 'School backend project',
+    slug: 'IIT-Internship-Workflow',
+    name: 'IIT-Internship-Workflow',
     tagline: {
-      en: 'TODO: real name + one-line pitch',
-      fr: 'À FAIRE : nom réel + description en une ligne',
+      en: 'Academic internship tracking and workflow management platform.',
+      fr: 'Plateforme de Suivi Académique des Stages.',
     },
     description: {
-      en: 'TODO: what course was this for, what does it do, what stack.',
-      fr: 'À FAIRE : contexte du cours, fonctionnalités et stack.',
+      en: 'A Spring Boot and Angular platform built to centralize and digitize the academic internship supervision process, ensuring traceability of exchanges and document versions.',
+      fr: 'Une plateforme Angular/Spring Boot conçue pour centraliser et digitaliser le processus de suivi des stages académiques, assurant la traçabilité des échanges.',
     },
     categories: ['backend'],
     featured: false,
     status: 'shipped',
-    tags: ['TODO'],
+    tags: [
+      'Spring Boot',
+      'Angular',
+      'PostgreSQL',
+      'WebSockets',
+      'Hibernate/JPA',
+    ],
+    demoUrl: 'https://loom.com/share/your-2-min-demo-video-link',
+    releaseUrl: '',
+    githubUrl: 'https://github.com/jecem-ben-slama/applyflow',
+    image: 'assets/applyflow/logo.svg',
+    screenshots: [
+      {
+        src: 'assets/applyflow/dashboard-view.png',
+        caption: {
+          en: 'Supervisor dashboard showing progress indicators and assigned students',
+          fr: 'Tableau de bord encadrant affichant les indicateurs de progression et les étudiants assignés',
+        },
+      },
+      {
+        src: 'assets/applyflow/architecture-diagram.png',
+        caption: {
+          en: 'System architecture and WebSocket messaging flow',
+          fr: 'Architecture système et flux de messagerie WebSocket',
+        },
+      },
+    ],
     hook: {
-      en: 'TODO: what was the assignment actually asking for?',
-      fr: 'À FAIRE : quel était l’intitulé du devoir ?',
+      en: 'A centralized backend platform that replaced a chaotic legacy workflow of static PDFs and WhatsApp messages with a unified application lifecycle and supervision pipeline.',
+      fr: 'Une plateforme back-end centralisée remplaçant un flux de travail chaotique (PDFs statiques et messages WhatsApp) par un cycle de vie de candidature et un pipeline de supervision unifiés.',
     },
     problem: {
-      en: 'TODO',
-      fr: 'À FAIRE',
+      en: 'The internship process was heavily fragmented: students picked from a static PDF, cold-emailed teachers, and communicated via WhatsApp. This caused severe information loss, zero traceability for administration, and a high risk of lost reports.',
+      fr: "Le processus de stage était fortement fragmenté : sélection via un PDF statique, emails à froid aux enseignants, et communication via WhatsApp. Cela causait une perte d'information sévère, aucune traçabilité pour l'administration, et un risque élevé de perte de rapports.",
     },
     how: {
-      en: ['TODO'],
-      fr: ['À FAIRE'],
+      en: [
+        'Engineered a Spring Boot REST API to manage the application lifecycle, using @Transactional state transitions to automatically mass-reject pending applications once a supervisor reaches their quota.',
+        'Designed a flexible PostgreSQL database schema using nullable foreign keys to seamlessly support both faculty-listed projects and custom student-proposed initiatives without complex table inheritance.',
+        'Built a secure supervision module featuring database-persisted WebSocket messaging (STOMP) and a decoupled file-handling service utilizing UUID sanitization, strictly enforcing resource ownership (preventing IDOR) at the controller level.',
+        'Implemented a centralized exception handling architecture (@ControllerAdvice) to intercept database constraints, authorization failures, and business logic errors, returning standardized, frontend-friendly JSON responses.',
+      ],
+      fr: [
+        "Développement d'une API REST Spring Boot pour gérer le cycle de vie des candidatures, utilisant des transitions d'état @Transactional pour rejeter automatiquement en masse les demandes en attente dès qu'un encadrant atteint son quota.",
+        "Conception d'un schéma de base de données PostgreSQL flexible avec des clés étrangères nullables pour prendre en charge aussi bien les projets proposés par les enseignants que les initiatives personnalisées des étudiants.",
+        "Création d'un module de supervision sécurisé intégrant une messagerie WebSocket (STOMP) persistée en base de données et un service de gestion de fichiers avec sanitisation par UUID, vérifiant strictement les autorisations (prévention IDOR) au niveau du contrôleur.",
+        "Implémentation d'une architecture centralisée de gestion des exceptions (@ControllerAdvice) pour intercepter les contraintes de base de données, les échecs d'autorisation et les erreurs métier, en renvoyant des réponses JSON standardisées.",
+      ],
     },
     proud: [
       {
         title: {
-          en: 'TODO',
-          fr: 'À FAIRE',
+          en: 'Pragmatic Storage Abstraction',
+          fr: 'Abstraction de Stockage Pragmatique',
         },
         detail: {
-          en: 'TODO',
-          fr: 'À FAIRE',
+          en: 'Used Dependency Injection to abstract file handling behind a StorageService interface. The MVP relies on simple local storage, but this decoupled design allows for an easy migration to cloud providers (AWS S3) in the future.',
+          fr: "Utilisation de l'injection de dépendances pour abstraire la gestion des fichiers via une interface StorageService. Le MVP s'appuie sur un stockage local simple, mais cette architecture découplée facilite une future migration vers le cloud (AWS S3).",
         },
       },
-    ],
-    tradeoffs: {
-      en: ['TODO'],
-      fr: ['À FAIRE'],
-    },
-    learned: {
-      en: ['TODO'],
-      fr: ['À FAIRE'],
-    },
-  },
-  {
-    slug: 'flutter-app-one',
-    name: 'Flutter app one',
-    tagline: {
-      en: 'TODO: real name + one-line pitch',
-      fr: 'À FAIRE : nom réel + description en une ligne',
-    },
-    description: {
-      en: 'TODO — smaller app, one or two sentences is enough.',
-      fr: 'À FAIRE — application plus petite.',
-    },
-    categories: ['mobile'],
-    featured: false,
-    status: 'shipped',
-    tags: ['Flutter', 'Dart'],
-    hook: {
-      en: 'TODO',
-      fr: 'À FAIRE',
-    },
-    problem: {
-      en: 'TODO',
-      fr: 'À FAIRE',
-    },
-    how: {
-      en: ['TODO'],
-      fr: ['À FAIRE'],
-    },
-    proud: [
       {
         title: {
-          en: 'TODO',
-          fr: 'À FAIRE',
+          en: 'Efficient Data Fetching',
+          fr: 'Récupération Efficace des Données',
         },
         detail: {
-          en: 'TODO',
-          fr: 'À FAIRE',
+          en: 'Eliminated N+1 bottlenecks on the dashboard views using standard DTO projections and JOIN FETCH queries to maintain response times well under the strict 2-second requirement.',
+          fr: "Élimination des goulots d'étranglement N+1 sur les tableaux de bord en utilisant des projections DTO et JOIN FETCH pour maintenir un temps de réponse bien inférieur à l'exigence stricte de 2 secondes.",
         },
       },
     ],
     tradeoffs: {
-      en: [],
-      fr: [],
+      en: [
+        'Used fire-and-forget async emails without a failure queue, eliminating the need for a dedicated message broker to keep infrastructure simple.',
+        'Omitted explicit database indexing for the MVP, relying on a school_year column for logical partitioning after correctly identifying that the low data volume per supervisor made full-table scans a non-issue.',
+      ],
+      fr: [
+        "Utilisation d'e-mails asynchrones \"fire-and-forget\" sans file d'attente d'échecs, éliminant le besoin d'un broker de messages pour simplifier l'infrastructure.",
+        "Omission de l'indexation explicite de la base de données pour le MVP, en s'appuyant sur une colonne school_year pour le partitionnement logique, ayant identifié que le faible volume de données par encadrant rendait les requêtes non problématiques.",
+      ],
     },
     learned: {
-      en: [],
-      fr: [],
-    },
-  },
-  {
-    slug: 'flutter-app-two',
-    name: 'Flutter app two',
-    tagline: {
-      en: 'TODO: real name + one-line pitch',
-      fr: 'À FAIRE : nom réel + description en une ligne',
-    },
-    description: {
-      en: 'TODO — smaller app, one or two sentences is enough.',
-      fr: 'À FAIRE — application plus petite.',
-    },
-    categories: ['mobile'],
-    featured: false,
-    status: 'shipped',
-    tags: ['Flutter', 'Dart'],
-    hook: {
-      en: 'TODO',
-      fr: 'À FAIRE',
-    },
-    problem: {
-      en: 'TODO',
-      fr: 'À FAIRE',
-    },
-    how: {
-      en: ['TODO'],
-      fr: ['À FAIRE'],
-    },
-    proud: [
-      {
-        title: {
-          en: 'TODO',
-          fr: 'À FAIRE',
-        },
-        detail: {
-          en: 'TODO',
-          fr: 'À FAIRE',
-        },
-      },
-    ],
-    tradeoffs: {
-      en: [],
-      fr: [],
-    },
-    learned: {
-      en: [],
-      fr: [],
+      en: [
+        'Enforcing the database as the strict single source of truth, shifting away from brittle frontend state management to robust backend validation.',
+        'Scoping MVP features and balancing technical debt against time-to-market.',
+        'Securing REST APIs against Insecure Direct Object Reference (IDOR) vulnerabilities.',
+        'Managing database transactions to ensure ACID compliance during bulk entity updates.',
+      ],
+      fr: [
+        "Imposer la base de données comme unique source de vérité, passant d'une gestion d'état front-end fragile à une validation back-end robuste.",
+        'Définition du périmètre MVP et équilibrage entre dette technique et délai de mise sur le marché.',
+        'Sécurisation des API REST contre les vulnérabilités de référence directe à un objet (IDOR).',
+        'Gestion des transactions de base de données pour assurer la conformité ACID lors des mises à jour en masse.',
+      ],
     },
   },
 ];

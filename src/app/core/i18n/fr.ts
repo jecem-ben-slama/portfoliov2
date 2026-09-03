@@ -47,8 +47,9 @@ export const fr = {
     problem: 'Le problème',
     howItWorks: 'Fonctionnement',
     proudOf: 'Ce dont je suis fier',
-    tradeoffs: 'Compromis et leçons',
-    processPractices: 'Processus et pratiques',
+    tradeoffs: 'Compromis',
+    processPractices: 'Compétences & Process',
+    lessons: 'Constats du Terrain',
     notFound: 'Projet introuvable.',
     backHome: "Retour à l'accueil",
     screenshots: 'Aperçu du produit',
@@ -155,4 +156,3 @@ export const fr = {
     backend: 'Backend & API',
   },
 };
-

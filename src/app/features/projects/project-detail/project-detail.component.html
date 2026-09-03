@@ -2,7 +2,6 @@
 
   <div class="detail-page">
 
-    
     <div class="split">
 
       <!-- Left sticky column -->
@@ -62,6 +61,7 @@
             </div>
           </div>
 
+          <!-- Process / Tech Learned Sidebar (Desktop) -->
           <div class="sidebar-card practices-card desktop-practices"
             *ngIf="getLocalizedArray(project.learned).length > 0">
 
@@ -80,7 +80,7 @@
         </div>
       </aside>
 
-      <!-- Main -->
+      <!-- Main Column -->
       <main class="main">
 
         <header class="main-header">
@@ -97,17 +97,16 @@
         </div>
 
         <div class="emulator-wrapper" *ngIf="project.appetizeUrl && isDemoActive">
-
           <div class="emulator-container">
             <iframe [src]="getSanitizerUrl(project.appetizeUrl)" width="375" height="800" frameborder="0"
               scrolling="no">
             </iframe>
           </div>
-
         </div>
 
         <div class="content-sections">
 
+          <!-- Problem Section -->
           <section class="block" *ngIf="project.problem">
             <h3>{{ i18n.t('projects.problem') }}</h3>
 
@@ -116,8 +115,8 @@
             </p>
           </section>
 
+          <!-- How It Works Section -->
           <section class="block" *ngIf="getLocalizedArray(project.how).length > 0">
-
             <h3>{{ i18n.t('projects.howItWorks') }}</h3>
 
             <ul class="styled-list">
@@ -125,17 +124,14 @@
                 <span>{{ step }}</span>
               </li>
             </ul>
-
           </section>
 
+          <!-- Key Wins Section -->
           <section class="block" *ngIf="project.proud.length">
-
             <h3>{{ i18n.t('projects.proudOf') }}</h3>
 
             <ul class="proud-list">
-
               <li *ngFor="let p of project.proud">
-
                 <div class="proud-title">
                   <b>{{ getLocalized(p.title) }}</b>
                 </div>
@@ -143,32 +139,36 @@
                 <div class="proud-detail">
                   {{ getLocalized(p.detail) }}
                 </div>
-
               </li>
-
             </ul>
-
           </section>
 
+          <!-- Trade-offs Section -->
           <section class="block" *ngIf="getLocalizedArray(project.tradeoffs).length > 0">
-
             <h3>{{ i18n.t('projects.tradeoffs') }}</h3>
 
             <ul class="styled-list tradeoffs-list">
-
               <li *ngFor="let t of getLocalizedArray(project.tradeoffs)">
                 <span>{{ t }}</span>
               </li>
-
             </ul>
+          </section>
 
+          <!-- Key Lessons Learned Section -->
+          <section class="block" *ngIf="project.lessons && getLocalizedArray(project.lessons).length > 0">
+            <h3>{{ i18n.t('projects.lessons') }}</h3>
+
+            <ul class="styled-list lessons-list">
+              <li *ngFor="let lesson of getLocalizedArray(project.lessons)">
+                <span>{{ lesson }}</span>
+              </li>
+            </ul>
           </section>
 
         </div>
 
-        <!-- Mobile-only practices -->
+        <!-- Process / Tech Learned Block (Mobile Fallback) -->
         <div class="sidebar-card practices-card mobile-practices" *ngIf="getLocalizedArray(project.learned).length > 0">
-
           <h3 class="side-heading">
             {{ i18n.t('projects.processPractices') }}
           </h3>
@@ -178,22 +178,17 @@
               {{ l }}
             </li>
           </ul>
-
         </div>
 
-        <!-- Gallery -->
+        <!-- Screenshots Gallery -->
         <section class="gallery-section" *ngIf="project.screenshots?.length">
-
           <h3 class="gallery-heading">
             {{ i18n.t('projects.screenshots') }}
           </h3>
 
           <div class="gallery">
-
             <figure *ngFor="let s of project.screenshots">
-
               <div class="img-container" (click)="s.src && openLightbox(s.src, getLocalized(s.caption))">
-
                 <img *ngIf="s.src; else shotPlaceholder" [src]="s.src" [alt]="getLocalized(s.caption)" />
 
                 <ng-template #shotPlaceholder>
@@ -201,53 +196,39 @@
                     {{ getLocalized(s.caption) }} (set src)
                   </div>
                 </ng-template>
-
               </div>
 
               <figcaption>
                 {{ getLocalized(s.caption) }}
               </figcaption>
-
             </figure>
-
           </div>
-
         </section>
 
       </main>
     </div>
-    
 
   </div>
 </ng-container>
 
-<!-- Lightbox -->
-
+<!-- Lightbox Modal -->
 <div class="lightbox" *ngIf="lightboxImage" (click)="closeLightbox()">
-
   <button class="lightbox-close" (click)="closeLightbox(); $event.stopPropagation()">
-    × </button>
+    ×
+  </button>
 
   <figure>
-
-    
     <img [src]="lightboxImage" [alt]="lightboxCaption" (click)="$event.stopPropagation()" />
 
     <figcaption *ngIf="lightboxCaption">
       {{ lightboxCaption }}
     </figcaption>
-    
-
   </figure>
 </div>
 
-<!-- Not found -->
-
+<!-- Not Found Template -->
 <ng-template #notFound>
-
   <div class="not-found">
-
-    
     <p>
       {{ i18n.t('projects.notFound') }}
     </p>
@@ -255,8 +236,5 @@
     <a routerLink="/" class="btn">
       &larr; {{ i18n.t('projects.backHome') }}
     </a>
-    
-
   </div>
-
 </ng-template>

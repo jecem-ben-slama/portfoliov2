@@ -1,7 +1,5 @@
-export type ProjectCategory =
-  | 'mobile'
-  | 'web-frontend'
-  | 'backend';
+export type ProjectCategory = 'mobile' | 'web-frontend' | 'backend';
+
 export type ProjectStatus = 'shipped' | 'in-progress' | 'draft';
 
 export type LocalizedString = {
@@ -35,7 +33,7 @@ export interface Project {
   tags: string[];
   demoUrl?: string;
   releaseUrl?: string;
-  appetizeUrl?:string,
+  appetizeUrl?: string;
   githubUrl?: string;
   image?: string;
   screenshots?: ProjectScreenshot[];
@@ -46,4 +44,5 @@ export interface Project {
   proud: ProjectHighlight[];
   tradeoffs: LocalizedStringArray;
   learned?: LocalizedStringArray;
+  lessons?: LocalizedStringArray;
 }

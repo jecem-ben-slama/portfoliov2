@@ -47,8 +47,9 @@ export const en = {
     problem: 'The problem',
     howItWorks: 'How it works',
     proudOf: "What I'm proud of",
-    tradeoffs: 'Trade-offs and lessons',
-    processPractices: 'Process & practices',
+    tradeoffs: 'Trade-offs',
+    processPractices: 'Skills & Workflow',
+    lessons: 'Real-World Realizations',
     notFound: 'Project not found.',
     backHome: 'Back home',
     screenshots: 'Product Preview',
@@ -149,7 +150,7 @@ export const en = {
   },
   filters: {
     all: 'All',
-    
+
     mobile: 'Mobile',
     webFrontend: 'Web Frontend',
     backend: 'Backend & API',

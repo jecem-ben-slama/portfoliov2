@@ -290,6 +290,18 @@ export const PROJECTS: Project[] = [
         'Prototypage rapide sous contraintes temporelles strictes',
       ],
     },
+    lessons: {
+      en: [
+        "Know when to stop fighting the hardware: after hours of brute-forcing, I had to accept defeat because I simply could not crack the secret of the actual remote's wake-up signal.",
+        'When developing quickly to solve an immediate problem, UI elegance takes a back seat. A quick-and-dirty interface that gets the job done right now is infinitely better than a polished design that never gets finished.',
+        'Documentation is a luxury; when working with unbranded legacy hardware, the device itself is your only source of truth.',
+      ],
+      fr: [
+        'Savoir quand abandonner la lutte contre le matériel : après des heures de force brute, j’ai dû accepter la défaite car je n’ai tout simplement pas pu percer le secret du véritable signal de réveil de la télécommande.',
+        'Lors d’un développement rapide pour résoudre un problème immédiat, l’élégance de l’interface passe au second plan. Une interface vite fait, bien fait qui résout le problème tout de suite vaut infiniment mieux qu’un design léché qui ne voit jamais le jour.',
+        'La documentation est un luxe ; lorsque l’on travaille avec du matériel non genré ou de récupération, l’appareil lui-même est votre unique source de vérité.',
+      ],
+    },
   },
   //* AI Partner
   {
@@ -417,6 +429,14 @@ export const PROJECTS: Project[] = [
         'Gestion des canaux de communication natifs asynchrones',
       ],
     },
+    lessons: {
+      en: [
+        'A powerful feature matters little if the user abandons it out of frustration. A silent loading spinner while downloading a 30MB language model in the background makes the app feel broken. I learned that transparent communication requires a multi-sensory approach: using distinct haptic vibrations, audio cues, and system notifications to explicitly signal background progress is just as critical as the core feature itself.',
+      ],
+      fr: [
+        "Une fonctionnalité puissante a peu de valeur si l'utilisateur l'abandonne par frustration. Un indicateur de chargement silencieux pendant le téléchargement d'un modèle de 30 Mo donne l'impression que l'application a planté. J'ai appris qu'une communication transparente doit être multisensorielle : utiliser des vibrations haptiques distinctes, des retours sonores et des notifications pour signaler clairement la progression en arrière-plan est tout aussi crucial que la fonctionnalité elle-même.",
+      ],
+    },
   },
   //* IIT Internship
   {
@@ -445,23 +465,8 @@ export const PROJECTS: Project[] = [
     apiUrl:
       'https://iit-851148.docs.buildwithfern.com/internship-manager/introduction',
     githubUrl: 'https://github.com/jecem-ben-slama/applyflow',
-    image: 'assets/applyflow/logo.svg',
-    screenshots: [
-      {
-        src: 'assets/applyflow/dashboard-view.png',
-        caption: {
-          en: 'Supervisor dashboard showing progress indicators and assigned students',
-          fr: 'Tableau de bord encadrant affichant les indicateurs de progression et les étudiants assignés',
-        },
-      },
-      {
-        src: 'assets/applyflow/architecture-diagram.png',
-        caption: {
-          en: 'System architecture and WebSocket messaging flow',
-          fr: 'Architecture système et flux de messagerie WebSocket',
-        },
-      },
-    ],
+    image: 'assets/iit/logo-dark.svg',
+    screenshots: [],
     hook: {
       en: 'A centralized backend platform that replaced a chaotic legacy workflow of static PDFs and WhatsApp messages with a unified application lifecycle and supervision pipeline.',
       fr: 'Une plateforme back-end centralisée remplaçant un flux de travail chaotique (PDFs statiques et messages WhatsApp) par un cycle de vie de candidature et un pipeline de supervision unifiés.',
@@ -528,6 +533,14 @@ export const PROJECTS: Project[] = [
         'Définition du périmètre MVP et équilibrage entre dette technique et délai de mise sur le marché.',
         'Sécurisation des API REST contre les vulnérabilités de référence directe à un objet (IDOR).',
         'Gestion des transactions de base de données pour assurer la conformité ACID lors des mises à jour en masse.',
+      ],
+    },
+    lessons: {
+      en: [
+        "This was my first real collaborative project, and I learned that an API response is itself a form of communication, not just a technical contract — my friend building the frontend had no reason to dig through my backend code to understand why something failed, which is why I stopped writing errors for myself and started writing them for someone who'd never seen my code.",
+      ],
+      fr: [
+        "C'était mon premier vrai projet collaboratif, et j'ai compris qu'une réponse API est en soi une forme de communication, pas seulement un contrat technique — mon ami qui développait le frontend n'avait aucune raison de fouiller dans mon code backend pour comprendre un échec, c'est pourquoi j'ai arrêté d'écrire des erreurs pour moi-même et j'ai commencé à les écrire pour quelqu'un qui n'avait jamais vu mon code.",
       ],
     },
   },

@@ -32,7 +32,9 @@ export class ActionsService {
   }
 
   getResumePath(): string {
-    return this.i18n.is('fr') ? 'assets/resume-fr.pdf' : 'assets/resume-en.pdf';
+    return this.i18n.is('fr')
+      ? 'assets/Jecem_Ben_Slama_CV.pdf'
+      : 'assets/Jecem_Ben_Slama_Resume.pdf';
   }
 
   trackResumeDownload(): void {

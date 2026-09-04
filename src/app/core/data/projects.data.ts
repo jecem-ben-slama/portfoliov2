@@ -6,12 +6,12 @@ export const PROJECTS: Project[] = [
     slug: 'applyflow',
     name: 'ApplyFlow',
     tagline: {
-      en: 'Job application automation engine with pipeline conversion tracking',
-      fr: "Moteur d'automatisation de candidatures avec suivi de conversion du pipeline",
+      en: 'Job application automation system with stage-by-stage success tracking.',
+      fr: "Système d'automatisation de candidatures avec suivi de réussite par étape.",
     },
     description: {
-      en: 'An automated dispatch system that tracks applicant funnel conversion rates to isolate drop-off points (resume screen vs. interview performance).',
-      fr: "Un système de dispatch automatisé qui suit les taux de conversion de l'entonnoir de candidature pour isoler les points d'abandon (tri des CV vs performance en entretien).",
+      en: 'An automated email dispatch tool that tracks application progress to pinpoint exactly where rejections happen (e.g., ignored resumes vs. failed interviews).',
+      fr: "Un outil d'envoi automatisé qui suit l'avancement des candidatures pour identifier précisément à quelle étape surviennent les refus (ex: CV ignorés vs entretiens ratés).",
     },
     categories: ['web-frontend', 'backend'],
     featured: true,
@@ -35,13 +35,7 @@ export const PROJECTS: Project[] = [
           fr: 'Aperçu en direct : e-mail assemblé avant envoi',
         },
       },
-      {
-        src: '',
-        caption: {
-          en: 'Conversion funnel: rejection stage breakdown',
-          fr: 'Entonnoir de conversion : ventilation des étapes de refus',
-        },
-      },
+
       {
         src: 'assets/applyflow/template.png',
         caption: {
@@ -49,51 +43,65 @@ export const PROJECTS: Project[] = [
           fr: 'Éditeur de modèles avec balises dynamiques',
         },
       },
+      {
+        src: 'assets/applyflow/dashboard-overview.png',
+        caption: {
+          en: 'Stage-by-stage overview: tracking application progress from dispatch to final offer',
+          fr: "Vue d'ensemble : suivi des étapes de candidature, de l'envoi à l'offre finale",
+        },
+      },
+      {
+        src: 'assets/applyflow/performance-breakdown.png',
+        caption: {
+          en: 'Performance breakdown: comparing response rates across CVs, languages, job titles, and templates',
+          fr: 'Analyse des performances : comparaison des taux de réponse par CV, langue, poste et modèle',
+        },
+      },
     ],
     hook: {
-      en: 'I built this after grinding through internship applications myself. The automation started as a fix for rewriting cover letters and attaching the right CV every time — but what kept me using it was the pipeline tracking: treating the job search as a conversion funnel helped me isolate whether my bottleneck was top-of-funnel (CV formatting) or bottom-of-funnel (interview execution).',
-      fr: "J'ai conçu cet outil après avoir enchaîné les candidatures de stage. L'automatisation a commencé comme un correctif pour réécrire les lettres de motivation et joindre le bon CV à chaque fois — mais ce qui m'a poussé à continuer, c'est le suivi du pipeline : traiter la recherche d'emploi comme un entonnoir de conversion m'a aidé à identifier si mon goulot d'étranglement venait du haut de l'entonnoir (format du CV) ou du bas (prestation en entretien).",
+      en: 'I built this after grinding through internship applications myself. The automation started as a fix for rewriting cover letters and attaching the right CV every time. But what kept me using it was the visual tracking: breaking the job hunt into stages helped me see exactly where I was failing—whether my CV was getting ignored early on, or if I was losing offers during the interviews.',
+      fr: "J'ai conçu cet outil après avoir enchaîné les candidatures de stage. L'automatisation a commencé comme un correctif pour éviter de réécrire les lettres de motivation et de joindre le bon CV à chaque fois. Mais ce qui m'a poussé à continuer, c'est le suivi visuel : diviser la recherche d'emploi en étapes m'a aidé à voir exactement où j'échouais — si mon CV était ignoré d'entrée de jeu, ou si je perdais des offres lors des entretiens.",
     },
     problem: {
-      en: "Manually applying to jobs means juggling CV variants, rewriting templates, and tracking statuses in a spreadsheet that's always out of sync. ApplyFlow fixes both: it provides reliable, automated dispatch through the Gmail API, and tracks pipeline stage transitions to surface actionable conversion metrics.",
-      fr: "Postuler manuellement implique de jongler entre plusieurs variantes de CV, de réécrire des modèles et de suivre les statuts dans un tableur toujours désynchronisé. ApplyFlow résout ces deux problèmes : il assure un envoi automatisé et fiable via l'API Gmail, tout en suivant les transitions d'étape pour dégager des métriques de conversion exploitables.",
+      en: "Manually applying to jobs means juggling CV variants, rewriting templates, and tracking statuses in a spreadsheet that's always out of sync. ApplyFlow fixes both: it provides reliable, automated email dispatch through the Gmail API, and tracks status changes to show exactly which stages of the job hunt need improvement.",
+      fr: "Postuler manuellement implique de jongler entre plusieurs variantes de CV, de réécrire des modèles et de suivre les statuts dans un tableur toujours désynchronisé. ApplyFlow résout ces deux problèmes : il assure un envoi automatisé et fiable via l'API Gmail, et suit les changements de statut pour montrer exactement quelles étapes de la recherche d'emploi doivent être améliorées.",
     },
     how: {
       en: [
         'Build a reusable email template with placeholders for company, position, and skills — in French or English.',
-        'At send time, placeholders auto-fill for the target company, with a live preview of exactly how the final email will read before dispatch.',
+        'At send time, placeholders are swapped for the target company, with a live preview of exactly how the final email will read before dispatch.',
         'Backend streams the matching CV from Google Drive directly into the email payload in memory — bypassing the database entirely.',
         "Email sends through the Gmail API on the user's behalf via OAuth.",
         'If Gmail is down or rate-limited, the application state machine holds the application in a "compiled" state instead of failing — dropping zero data.',
-        'Every state transition is logged (sent, rejected, interview, offer) to feed the conversion funnel metrics.',
+        'Every status change is logged (sent, rejected, interview, offer) to calculate success and drop-off rates.',
       ],
       fr: [
         "Création d'un modèle d'e-mail réutilisable avec des balises pour l'entreprise, le poste et les compétences — en français ou en anglais.",
-        "Au moment de l'envoi, les balises se remplissent automatiquement pour l'entreprise cible avec un aperçu en direct.",
+        "Au moment de l'envoi, les balises sont remplacées par les informations de l'entreprise cible, avec un aperçu en direct.",
         "Le backend récupère le CV depuis Google Drive et l'injecte directement en mémoire dans la charge utile de l'e-mail — en évitant la base de données.",
         "L'e-mail est envoyé via l'API Gmail pour le compte de l'utilisateur via OAuth.",
         'En cas de panne de Gmail, la machine à états retient la candidature à l’état "compilé" pour éviter toute perte de données.',
-        "Chaque transition d'état (envoyé, refusé, entretien, offre) est enregistrée pour alimenter les métriques de l'entonnoir.",
+        "Chaque changement de statut (envoyé, refusé, entretien, offre) est enregistré pour calculer les taux de réussite et d'abandon.",
       ],
     },
     proud: [
       {
         title: {
-          en: 'Pipeline stage metrics for isolating bottlenecks.',
-          fr: 'Métriques par étape pour isoler les goulots d’étranglement.',
+          en: 'Stage-by-stage tracking to isolate failures.',
+          fr: 'Suivi par étape pour isoler les échecs.',
         },
         detail: {
-          en: 'Tracks conversion rates across the application lifecycle. Identifying a drop-off before the recruiter screen isolates top-of-funnel issues (CV/targeting), whereas post-interview rejections point to execution. Includes basic A/B tracking to see which CV variant performs best.',
-          fr: 'Suit les taux de conversion tout au long du cycle de vie de la candidature. Permet d’identifier si les rejections proviennent du ciblage initial ou de la phase d’entretien.',
+          en: 'Tracks application success rates from submission to offer. Seeing exactly where an application dies makes it obvious if the problem is a bad CV (early rejection) or poor interview skills (late rejection). Includes response tracking across different CVs to see which version earns more interview callbacks.',
+          fr: "Suit les taux de réussite de l'envoi à l'offre. Voir exactement où une candidature s'arrête permet de savoir si le problème vient d'un mauvais CV (refus précoce) ou de lacunes en entretien (refus tardif). Inclut un suivi des réponses selon les versions de CV pour identifier quelle version décroche le plus d'entretiens.",
         },
       },
       {
         title: {
-          en: 'A template engine that scales.',
-          fr: 'Un moteur de modèles évolutif.',
+          en: 'A template system that scales.',
+          fr: 'Un système de modèles évolutif.',
         },
         detail: {
-          en: 'Dynamic placeholders for company, position, and skills, auto-filled per application in French or English, with a live payload preview before execution.',
+          en: 'Dynamic placeholders for company, position, and skills, filled per application in French or English, with a live payload preview before execution.',
           fr: 'Balises dynamiques adaptées au français ou à l’anglais, avec prévisualisation du payload avant exécution.',
         },
       },
@@ -219,7 +227,7 @@ export const PROJECTS: Project[] = [
         "Domain Acquisition: Before writing a single line of code, I spent hours researching how physical IR remotes actually work—diving into carrier frequencies, pulse-distance modulation, and raw hardware signaling to understand exactly what the TV's receiver was expecting.",
         "Started from the TV's regulatory and licensing documentation to narrow down the receiver hardware, pointing to the NEC IR protocol.",
         'Compiled 8 pages of potential carrier frequencies to test. Luckily, the receiver responded to a frequency on page two, saving hours of blind testing and validating the native Android I/O bridge.',
-        'NEC packets need a valid 8-bit system address. Brute-forced that address space (0x00–0xFF) against the physical TV until it answered at 0x01.',
+        'NEC packets need a valid 8-bit system address. Brute-forced that address space (0x00–0xFF) against the physical TV until it responded.',
         'Built a custom internal diagnostic UI to fire hex commands at the TV and label what each one did — capture, label, verify, repeat.',
         "Wired the mapped command set into a raw, utilitarian Flutter frontend via Android's native Consumer IR API.",
       ],
@@ -227,7 +235,7 @@ export const PROJECTS: Project[] = [
         "Acquisition de domaine : Avant de coder, j'ai étudié le fonctionnement physique des télécommandes IR (fréquences porteuses, modulation de distance d'impulsion, signalisation matérielle) pour comprendre les attentes du récepteur.",
         'Analyse de la documentation réglementaire pour identifier le matériel, pointant vers le protocole IR NEC.',
         "Compilation de 8 pages de fréquences porteuses à tester. Coup de chance : la TV a répondu à une fréquence de la deuxième page, validant immédiatement l'approche.",
-        "Force brute de l'espace d'adressage 8 bits (0x00–0xFF) jusqu'à obtenir une réponse de la TV à l'adresse 0x01.",
+        "Force brute de l'espace d'adressage 8 bits (0x00–0xFF) jusqu'à obtenir une réponse de la TV.",
         "Création d'une interface de diagnostic interne pour envoyer des commandes hexadécimales et labelliser leur effet.",
         "Intégration des commandes cartographiées dans une interface Flutter utilitaire via l'API Consumer IR d'Android.",
       ],
@@ -249,7 +257,7 @@ export const PROJECTS: Project[] = [
           fr: 'Créer des outils de diagnostic au lieu de deviner.',
         },
         detail: {
-          en: 'Instead of manually testing hex codes one by one in code, I built a dark-mode diagnostic UI that turned tedious hex-testing into a fast, repeatable loop.',
+          en: 'Instead of manually testing hex codes one by one in code, I built a UI that turned tedious hex-testing into a fast, repeatable loop.',
           fr: "Au lieu de tester manuellement le code hexadécimal, j'ai créé une interface de diagnostic qui a rendu les tests rapides et reproductibles.",
         },
       },
@@ -464,7 +472,8 @@ export const PROJECTS: Project[] = [
     releaseUrl: '',
     apiUrl:
       'https://iit-851148.docs.buildwithfern.com/internship-manager/introduction',
-    githubUrl: 'https://github.com/jecem-ben-slama/applyflow',
+    githubUrl:
+      'https://github.com/jecem-ben-slama/InternshipManagerApplication',
     image: 'assets/iit/logo-dark.svg',
     screenshots: [],
     hook: {
@@ -477,16 +486,18 @@ export const PROJECTS: Project[] = [
     },
     how: {
       en: [
-        'Engineered a Spring Boot REST API to manage the application lifecycle, using @Transactional state transitions to automatically mass-reject pending applications once a supervisor reaches their quota.',
-        'Designed a flexible PostgreSQL database schema using nullable foreign keys to seamlessly support both faculty-listed projects and custom student-proposed initiatives without complex table inheritance.',
-        'Built a secure supervision module featuring database-persisted WebSocket messaging (STOMP) and a decoupled file-handling service utilizing UUID sanitization, strictly enforcing resource ownership (preventing IDOR) at the controller level.',
-        'Implemented a centralized exception handling architecture (@ControllerAdvice) to intercept database constraints, authorization failures, and business logic errors, returning standardized, frontend-friendly JSON responses.',
+        'Professors publish project topics with set student quotas, while students can also submit custom project proposals directly to a supervisor.',
+        'Students apply to available projects, and the platform tracks each application status in real time.',
+        'The moment a supervisor accepts a student and hits their quota limit, the backend automatically mass-rejects all remaining pending applications for that project.',
+        'Once paired, the supervisor and student unlock a private workspace featuring live messaging (STOMP WebSockets) and secure document exchange.',
+        'Every operation runs through a centralized error handler, ensuring failed uploads or constraint violations return clear messages rather than breaking the frontend.',
       ],
       fr: [
-        "Développement d'une API REST Spring Boot pour gérer le cycle de vie des candidatures, utilisant des transitions d'état @Transactional pour rejeter automatiquement en masse les demandes en attente dès qu'un encadrant atteint son quota.",
-        "Conception d'un schéma de base de données PostgreSQL flexible avec des clés étrangères nullables pour prendre en charge aussi bien les projets proposés par les enseignants que les initiatives personnalisées des étudiants.",
-        "Création d'un module de supervision sécurisé intégrant une messagerie WebSocket (STOMP) persistée en base de données et un service de gestion de fichiers avec sanitisation par UUID, vérifiant strictement les autorisations (prévention IDOR) au niveau du contrôleur.",
-        "Implémentation d'une architecture centralisée de gestion des exceptions (@ControllerAdvice) pour intercepter les contraintes de base de données, les échecs d'autorisation et les erreurs métier, en renvoyant des réponses JSON standardisées.",
+        'Les enseignants publient leurs sujets avec un quota d’étudiants, tandis que les étudiants peuvent aussi proposer leurs propres sujets directement.',
+        'Les étudiants postulent aux projets disponibles, et la plateforme suit l’état de chaque demande en temps réel.',
+        'Dès qu’un enseignant accepte un étudiant et atteint son quota, le backend rejette automatiquement toutes les autres candidatures en attente pour ce projet.',
+        'Une fois le binôme validé, l’étudiant et l’enseignant accèdent à un espace privé avec messagerie en temps réel (STOMP WebSockets) et partage sécurisé de documents.',
+        'Toutes les opérations passent par un gestionnaire d’erreurs centralisé, garantissant des messages clairs au lieu de faire planter l’interface en cas de problème.',
       ],
     },
     proud: [

@@ -180,6 +180,7 @@ a {
   margin: 0 auto;
   padding: 72px 24px;
   width: 100%; // ensures it never exceeds its centered max-width, no lopsided overflow
+  scroll-margin-top: 76px; // offset so anchor lands below the fixed navbar
 }
 
 .section-head {
@@ -189,5 +190,39 @@ a {
 @media (max-width: 640px) {
   .section {
     padding: 48px 20px;
+    scroll-margin-top: 72px;
   }
+}
+/* ─────────────────────────────────────────
+   Custom scrollbar
+   ───────────────────────────────────────── */
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 20px;
+  border: 2px solid var(--ink); // creates a slight inset padding effect
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--signal-dim);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--ink);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) var(--ink);
 }

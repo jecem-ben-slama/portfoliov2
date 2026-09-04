@@ -42,16 +42,26 @@ export class AppComponent {
   private platformId = inject(PLATFORM_ID);
 
   constructor() {
-    // Kick off automatic router tracking
     this.analytics.initTracking();
 
-    // Only run window/DOM scroll code on the browser side during SSR
     if (isPlatformBrowser(this.platformId)) {
       this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        .pipe(
+          filter(
+            (event): event is NavigationEnd => event instanceof NavigationEnd
+          )
+        )
+        .subscribe((event) => {
+          const url = event.urlAfterRedirects || event.url;
 
+          // Skip forced scroll-to-top when navigating to a fragment/anchor —
+          // let Angular's built-in anchorScrolling (or HomeComponent's manual
+          // fallback) handle it instead
+          if (url.includes('#')) {
+            return;
+          }
+
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
           document.documentElement.scrollTop = 0;
           document.body.scrollTop = 0;
 

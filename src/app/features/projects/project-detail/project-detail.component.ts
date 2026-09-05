@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Observable, switchMap, of } from 'rxjs';
@@ -57,6 +57,7 @@ export class ProjectDetailComponent {
     const lang = this.i18n.language() as Language;
     return field[lang] || field.en || [];
   }
+
   lightboxImage: string | null = null;
   lightboxCaption: string = '';
 
@@ -67,5 +68,13 @@ export class ProjectDetailComponent {
 
   closeLightbox(): void {
     this.lightboxImage = null;
+  }
+
+  // Add HostListener to listen for the Escape key globally
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    if (this.lightboxImage) {
+      this.closeLightbox();
+    }
   }
 }
